@@ -1,0 +1,1505 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+
+<title>PMOS™ — ERP & Transformation Behavioral Diagnostic</title>
+<meta name="description" content="7 questions. Full behavioral diagnosis. PMOS identifies which of five hidden patterns — Death By Governance, Hero Dependency, Silent Resistance and more — is stalling your ERP or transformation program. Free go-live delay risk score.">
+
+<!-- Open Graph (LinkedIn, Slack, WhatsApp previews) -->
+<meta property="og:title" content="PMOS™ — ERP Behavioral Diagnostic">
+<meta property="og:description" content="Is your ERP program failing because of the technology — or because of behavior? 7 questions. Full behavioral risk score. Free go-live delay risk.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://YOUR-USERNAME.github.io/pmos">
+<meta property="og:image" content="https://YOUR-USERNAME.github.io/pmos/og-image.png">
+
+<!-- Twitter / X card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="PMOS™ — ERP Behavioral Diagnostic">
+<meta name="twitter:description" content="7 questions. Behavioral risk score. Go-live delay %. Free.">
+
+<!-- Mobile / PWA -->
+<meta name="theme-color" content="#1A1A2E">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+<meta name="apple-mobile-web-app-title" content="PMOS">
+<meta name="mobile-web-app-capable" content="yes">
+
+<!-- Fonts -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+/* ── TOKENS ─────────────────────────────────────────────── */
+:root {
+  --navy:   #1A1A2E;
+  --red:    #E8505B;
+  --orange: #E07B39;
+  --amber:  #E8A33D;
+  --green:  #2E9E5B;
+  --dgray:  #555566;
+  --mgray:  #AAAABC;
+  --lgray:  #EDEDF5;
+  --bg:     #F4F4FA;
+  --report-bg: #FAFAFA;
+  --white:  #FFFFFF;
+  --cream:  #FFF8F4;
+
+  --f-ui:   'Inter', system-ui, sans-serif;
+  --f-body: Georgia, 'Times New Roman', serif;
+
+  --radius: 6px;
+  --shadow: 0 2px 16px rgba(26,26,46,.10);
+}
+
+/* ── RESET ──────────────────────────────────────────────── */
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{font-size:16px;-webkit-text-size-adjust:100%;scroll-behavior:smooth}
+body{font-family:var(--f-ui);background:var(--bg);color:var(--navy);line-height:1.5;min-height:100vh}
+button{font-family:var(--f-ui);cursor:pointer;border:none;background:none;-webkit-tap-highlight-color:transparent;touch-action:manipulation}
+input,select{font-family:var(--f-ui)}
+
+/* ── SCREENS ─────────────────────────────────────────────── */
+.screen{display:none;min-height:100vh}
+.screen.active{display:block}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN 0 — LANDING
+══════════════════════════════════════════════════════════ */
+#s-landing{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  min-height:100vh;padding:48px 24px;background:var(--navy);
+}
+#s-landing.active{display:flex}
+.landing-logo{
+  font-size:14px;font-weight:700;letter-spacing:.18em;color:var(--red);
+  text-transform:uppercase;margin-bottom:40px;
+}
+.landing-h{
+  font-size:clamp(2rem,5vw,3.4rem);font-weight:700;color:var(--white);
+  text-align:center;line-height:1.15;max-width:700px;
+}
+.landing-h em{color:var(--red);font-style:normal}
+.landing-sub{
+  margin-top:20px;font-size:1.05rem;color:var(--mgray);
+  text-align:center;max-width:540px;line-height:1.7;
+}
+.landing-patterns{
+  display:flex;flex-wrap:wrap;gap:10px;margin-top:36px;justify-content:center;max-width:600px;
+}
+.lp-chip{
+  background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.12);
+  border-radius:40px;padding:6px 16px;font-size:.78rem;color:var(--mgray);
+  letter-spacing:.04em;
+}
+.landing-cta{
+  margin-top:44px;background:var(--red);color:var(--white);
+  font-size:1rem;font-weight:600;padding:16px 40px;border-radius:var(--radius);
+  letter-spacing:.02em;transition:background .15s;
+}
+.landing-cta:hover{background:#d43f4a}
+.landing-meta{margin-top:24px;font-size:.78rem;color:var(--dgray)}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN 1 — INTAKE (program name + budget + role)
+══════════════════════════════════════════════════════════ */
+#s-intake{background:var(--bg)}
+#s-intake.active{display:flex;align-items:center;justify-content:center;min-height:100vh;padding:40px 24px}
+.intake-card{
+  background:var(--white);border-radius:10px;box-shadow:var(--shadow);
+  padding:48px;width:100%;max-width:520px;
+}
+.intake-eyebrow{font-size:.75rem;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:12px}
+.intake-h{font-size:1.6rem;font-weight:700;color:var(--navy);line-height:1.2;margin-bottom:8px}
+.intake-sub{font-size:.9rem;color:var(--dgray);margin-bottom:32px;line-height:1.6}
+.form-field{margin-bottom:20px}
+.form-label{display:block;font-size:.8rem;font-weight:600;color:var(--navy);margin-bottom:6px;letter-spacing:.03em}
+.form-input{
+  width:100%;padding:11px 14px;border:1.5px solid var(--lgray);border-radius:var(--radius);
+  font-size:.95rem;color:var(--navy);background:var(--white);
+  transition:border-color .15s;outline:none;
+}
+.form-input:focus{border-color:var(--red)}
+.form-select{appearance:none;background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23555566' stroke-width='1.5' fill='none'/%3E%3C/svg%3E");background-repeat:no-repeat;background-position:right 14px center}
+.form-hint{font-size:.75rem;color:var(--mgray);margin-top:4px}
+.intake-btn{
+  width:100%;background:var(--navy);color:var(--white);font-size:.95rem;font-weight:600;
+  padding:14px;border-radius:var(--radius);margin-top:8px;transition:background .15s;
+}
+.intake-btn:hover{background:#2a2a48}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN 2 — ASSESSMENT (split panel)
+══════════════════════════════════════════════════════════ */
+#s-assess{background:var(--bg)}
+#s-assess.active{display:grid;grid-template-columns:1fr 380px;min-height:100vh}
+
+.assess-left{
+  padding:48px;display:flex;flex-direction:column;justify-content:center;
+  max-width:620px;margin:0 auto;width:100%;
+}
+.assess-progress-wrap{margin-bottom:40px}
+.assess-progress-label{
+  display:flex;justify-content:space-between;font-size:.75rem;
+  font-weight:600;color:var(--dgray);margin-bottom:8px;letter-spacing:.04em;
+}
+.assess-progress-bar{height:3px;background:var(--lgray);border-radius:2px}
+.assess-progress-fill{height:3px;background:var(--red);border-radius:2px;transition:width .4s ease}
+
+.q-num{font-size:.72rem;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin-bottom:14px}
+.q-text{font-size:1.35rem;font-weight:600;color:var(--navy);line-height:1.35;margin-bottom:32px;font-family:var(--f-body)}
+.q-options{display:flex;flex-direction:column;gap:10px}
+.q-option{
+  display:flex;align-items:center;gap:14px;padding:14px 18px;
+  border:1.5px solid var(--lgray);border-radius:var(--radius);
+  background:var(--white);cursor:pointer;transition:all .15s;text-align:left;
+  font-size:.93rem;color:var(--navy);
+}
+.q-option:hover{border-color:var(--red);background:var(--cream)}
+.q-option.selected{border-color:var(--red);background:var(--cream)}
+.q-option.selected .opt-radio{background:var(--red);border-color:var(--red)}
+.opt-radio{
+  width:16px;height:16px;border-radius:50%;border:2px solid var(--mgray);
+  flex-shrink:0;transition:all .15s;display:flex;align-items:center;justify-content:center;
+}
+.opt-radio::after{content:'';width:6px;height:6px;border-radius:50%;background:var(--white);display:none}
+.q-option.selected .opt-radio::after{display:block}
+.opt-val{
+  margin-left:auto;font-size:.72rem;font-weight:700;color:var(--mgray);
+  background:var(--lgray);padding:2px 8px;border-radius:20px;flex-shrink:0;
+}
+.q-option.selected .opt-val{background:var(--red);color:var(--white)}
+
+.assess-nav{display:flex;align-items:center;gap:12px;margin-top:32px}
+.assess-back{
+  padding:10px 20px;border:1.5px solid var(--lgray);border-radius:var(--radius);
+  font-size:.85rem;font-weight:600;color:var(--dgray);transition:all .15s;
+}
+.assess-back:hover{border-color:var(--navy);color:var(--navy)}
+.assess-next{
+  flex:1;padding:12px 24px;background:var(--navy);color:var(--white);
+  border-radius:var(--radius);font-size:.9rem;font-weight:600;
+  transition:background .15s;opacity:.4;pointer-events:none;
+}
+.assess-next.enabled{opacity:1;pointer-events:all}
+.assess-next.enabled:hover{background:#2a2a48}
+
+/* ── RIGHT PANEL ──────────────────────────────────────── */
+.assess-right{
+  background:var(--navy);padding:40px 32px;
+  display:flex;flex-direction:column;justify-content:center;position:sticky;top:0;height:100vh;overflow-y:auto;
+}
+.live-label{
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;color:var(--mgray);
+  text-transform:uppercase;margin-bottom:28px;
+}
+.live-pattern{margin-bottom:16px}
+.live-pname{font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);margin-bottom:5px}
+.live-bar-track{height:6px;background:rgba(255,255,255,.1);border-radius:3px}
+.live-bar-fill{height:6px;border-radius:3px;transition:width .5s cubic-bezier(.4,0,.2,1)}
+.live-score-row{display:flex;justify-content:space-between;align-items:center;margin-top:3px}
+.live-score-num{font-size:.72rem;font-weight:700;color:rgba(255,255,255,.5)}
+.live-band{font-size:.62rem;font-weight:700;letter-spacing:.08em;padding:1px 7px;border-radius:20px}
+.live-divider{border:none;border-top:1px solid rgba(255,255,255,.08);margin:24px 0}
+.live-health-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--mgray);text-transform:uppercase;margin-bottom:16px}
+.live-health-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.live-health-cell{
+  background:rgba(255,255,255,.05);border-radius:4px;padding:10px;
+  text-align:center;
+}
+.live-health-val{font-size:1.1rem;font-weight:700;color:var(--white)}
+.live-health-name{font-size:.62rem;color:var(--mgray);margin-top:2px}
+.live-overall{
+  background:var(--red);border-radius:var(--radius);padding:14px;
+  text-align:center;margin-top:12px;
+}
+.live-overall-label{font-size:.68rem;font-weight:700;color:rgba(255,255,255,.8);letter-spacing:.1em;text-transform:uppercase}
+.live-overall-val{font-size:1.8rem;font-weight:700;color:var(--white);line-height:1}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN 3 — SCORING (transition)
+══════════════════════════════════════════════════════════ */
+#s-scoring{background:var(--navy)}
+#s-scoring.active{display:flex;align-items:center;justify-content:center;min-height:100vh}
+.scoring-inner{text-align:center;padding:40px}
+.scoring-spinner{
+  width:56px;height:56px;border:3px solid rgba(255,255,255,.15);
+  border-top-color:var(--red);border-radius:50%;
+  animation:spin 1s linear infinite;margin:0 auto 28px;
+}
+@keyframes spin{to{transform:rotate(360deg)}}
+.scoring-label{font-size:1rem;color:rgba(255,255,255,.7);font-weight:500}
+.scoring-steps{margin-top:20px;display:flex;flex-direction:column;gap:8px}
+.scoring-step{font-size:.8rem;color:rgba(255,255,255,.35);transition:color .3s}
+.scoring-step.done{color:var(--green)}
+.scoring-step.active-step{color:var(--white)}
+
+/* ══════════════════════════════════════════════════════════
+   SCREEN 4 — REPORT
+══════════════════════════════════════════════════════════ */
+#s-report{background:var(--report-bg)}
+#s-report.active{display:block}
+
+.report-topbar{
+  background:var(--navy);padding:14px 40px;display:flex;align-items:center;
+  justify-content:space-between;position:sticky;top:0;z-index:100;
+}
+.report-topbar-logo{font-size:.78rem;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase}
+.report-topbar-meta{font-size:.75rem;color:var(--mgray)}
+.report-print-btn{
+  background:rgba(255,255,255,.1);color:var(--white);font-size:.75rem;font-weight:600;
+  padding:7px 16px;border-radius:var(--radius);letter-spacing:.04em;transition:background .15s;
+}
+.report-print-btn:hover{background:rgba(255,255,255,.2)}
+
+.report-body{max-width:820px;margin:0 auto;padding:48px 32px 80px}
+
+/* Section */
+.rs{margin-bottom:44px}
+.rs-eyebrow{
+  font-size:.68rem;font-weight:700;letter-spacing:.18em;color:var(--red);
+  text-transform:uppercase;margin-bottom:6px;
+}
+.rs-title{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:16px;padding-bottom:10px;border-bottom:2px solid var(--lgray)}
+.rs-title span{color:var(--red)}
+
+/* For-you box */
+.for-you-box{
+  background:var(--cream);border:1px solid rgba(232,80,91,.25);border-left:3px solid var(--red);
+  border-radius:var(--radius);padding:24px 28px;
+}
+.for-you-box p{font-family:var(--f-body);font-size:1rem;line-height:1.8;color:var(--navy)}
+
+/* Summary */
+.summary-text{font-family:var(--f-body);font-size:1rem;line-height:1.85;color:var(--navy)}
+
+/* Pattern bars */
+.pattern-row{margin-bottom:14px}
+.pattern-meta{display:flex;justify-content:space-between;align-items:baseline;margin-bottom:5px}
+.pattern-name{font-size:.85rem;font-weight:600;color:var(--navy)}
+.pattern-badge{font-size:.65rem;font-weight:700;letter-spacing:.08em;padding:2px 9px;border-radius:20px;color:var(--white)}
+.pattern-track{height:10px;background:var(--lgray);border-radius:5px;overflow:hidden}
+.pattern-fill{height:10px;border-radius:5px;transition:width .7s cubic-bezier(.4,0,.2,1)}
+.pattern-note{font-size:.75rem;color:var(--dgray);margin-top:4px;font-style:italic}
+
+/* Health grid */
+.health-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;margin-bottom:12px}
+.health-cell{background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius);padding:16px 8px;text-align:center}
+.health-val{font-size:1.5rem;font-weight:700}
+.health-name{font-size:.68rem;color:var(--dgray);margin-top:4px}
+.health-overall{
+  background:var(--navy);color:var(--white);border-radius:var(--radius);
+  padding:16px 24px;display:flex;align-items:center;justify-content:space-between;
+}
+.health-overall-label{font-size:.8rem;font-weight:600;letter-spacing:.06em;color:rgba(255,255,255,.75)}
+.health-overall-val{font-size:1.6rem;font-weight:700;color:var(--white)}
+.health-overall-sub{font-size:.72rem;color:var(--mgray);margin-top:2px}
+
+/* Diagnosis blocks */
+.diag-block{margin-bottom:20px;padding:20px 24px;background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius)}
+.diag-rank{font-size:.65rem;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:4px}
+.diag-name{font-size:1rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+.diag-score-pill{display:inline-flex;align-items:center;gap:6px;margin-bottom:12px}
+.diag-score-num{font-size:.8rem;font-weight:700;color:var(--navy)}
+.diag-text{font-family:var(--f-body);font-size:.95rem;line-height:1.75;color:var(--navy)}
+
+/* Failure scenario */
+.failure-box{background:var(--white);border:1px solid rgba(232,80,91,.2);border-radius:var(--radius);overflow:hidden}
+.failure-header{background:rgba(232,80,91,.07);padding:12px 20px;font-size:.8rem;font-weight:700;color:var(--red)}
+.failure-timeline{padding:20px}
+.failure-row{display:grid;grid-template-columns:100px 1fr;gap:16px;margin-bottom:16px}
+.failure-period{font-size:.8rem;font-weight:700;color:var(--navy);padding-top:1px}
+.failure-desc{font-family:var(--f-body);font-size:.88rem;line-height:1.65;color:var(--dgray)}
+.failure-warning{
+  background:rgba(232,80,91,.07);border-top:1px solid rgba(232,80,91,.15);
+  padding:12px 20px;font-size:.82rem;font-weight:600;color:var(--red);font-style:italic;
+}
+
+/* Risk rows */
+.risk-row{margin-bottom:16px;padding:14px 18px;background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius)}
+.risk-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:8px}
+.risk-name{font-size:.85rem;font-weight:600;color:var(--navy)}
+.risk-pct-badge{font-size:1rem;font-weight:700}
+.risk-bar-track{height:8px;background:var(--lgray);border-radius:4px;margin-bottom:8px}
+.risk-bar-fill{height:8px;border-radius:4px}
+.risk-why{font-size:.75rem;color:var(--dgray);font-style:italic;border-left:2px solid var(--lgray);padding-left:10px}
+
+/* Cost of delay */
+.cod-table{background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius);overflow:hidden;margin-bottom:12px}
+.cod-row{display:grid;grid-template-columns:1fr auto;gap:16px;padding:14px 20px;border-bottom:1px solid var(--lgray);align-items:start}
+.cod-row:last-child{border-bottom:none}
+.cod-label{font-size:.87rem;font-weight:600;color:var(--navy)}
+.cod-note{font-size:.72rem;color:var(--mgray);margin-top:2px}
+.cod-value{font-size:.95rem;font-weight:700;color:var(--red);white-space:nowrap}
+.cod-total{
+  background:var(--navy);color:var(--white);border-radius:var(--radius);
+  padding:16px 20px;display:flex;justify-content:space-between;align-items:center;
+}
+.cod-total-label{font-size:.82rem;font-weight:700;letter-spacing:.04em;color:rgba(255,255,255,.8)}
+.cod-total-val{font-size:1.5rem;font-weight:700;color:var(--red)}
+.cod-disclaimer{font-size:.72rem;color:var(--mgray);margin-top:8px;font-style:italic}
+
+/* Talking points */
+.tp-item{margin-bottom:16px}
+.tp-label{font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:6px}
+.tp-quote{
+  background:var(--lgray);border-left:3px solid var(--navy);border-radius:0 var(--radius) var(--radius) 0;
+  padding:16px 20px;font-family:var(--f-body);font-size:.92rem;line-height:1.75;color:var(--navy);
+}
+
+/* Recovery plan */
+.week-block{display:grid;grid-template-columns:96px 1fr;gap:0;margin-bottom:4px;border-radius:var(--radius);overflow:hidden;border:1px solid var(--lgray)}
+.week-label{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:16px 8px;text-align:center;
+}
+.week-label strong{font-size:.7rem;font-weight:700;letter-spacing:.1em;color:var(--white);text-transform:uppercase}
+.week-label span{font-size:.6rem;font-weight:600;color:rgba(255,255,255,.7);text-transform:uppercase;margin-top:2px}
+.week-items{background:var(--white);padding:16px 20px}
+.week-item{font-size:.85rem;line-height:1.6;color:var(--navy);padding:6px 0;border-bottom:1px solid var(--lgray);display:flex;gap:10px}
+.week-item:last-child{border-bottom:none}
+.week-item::before{content:'→';color:var(--red);font-weight:700;flex-shrink:0;margin-top:1px}
+
+/* Monday actions */
+.monday-grid{display:flex;flex-direction:column;gap:14px}
+.monday-item{background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius);padding:18px 20px;display:grid;grid-template-columns:36px 1fr;gap:14px;align-items:start}
+.monday-num{
+  width:36px;height:36px;background:var(--red);color:var(--white);
+  font-size:1rem;font-weight:700;border-radius:50%;
+  display:flex;align-items:center;justify-content:center;flex-shrink:0;
+}
+.monday-action{font-size:.87rem;font-weight:700;color:var(--navy);margin-bottom:4px}
+.monday-detail{font-size:.82rem;color:var(--dgray);line-height:1.6}
+
+/* Interventions */
+.intv-row{padding:16px 20px;border-bottom:1px solid var(--lgray);display:grid;grid-template-columns:100px 1fr auto;gap:12px;align-items:center}
+.intv-row:last-child{border-bottom:none}
+.intv-tag{font-size:.65rem;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--white);padding:3px 10px;border-radius:20px}
+.intv-name{font-size:.88rem;font-weight:600;color:var(--navy)}
+.intv-timing{font-size:.75rem;color:var(--mgray)}
+
+/* Closing note */
+.closing-note{
+  background:var(--cream);border:1px solid rgba(232,80,91,.2);border-radius:var(--radius);
+  padding:24px 28px;
+}
+.closing-note-title{font-size:.85rem;font-weight:700;color:var(--navy);margin-bottom:10px}
+.closing-note p{font-family:var(--f-body);font-size:.88rem;line-height:1.75;color:var(--dgray)}
+
+
+/* ── PAYWALL ─────────────────────────────────────────────────── */
+.locked-section{position:relative;overflow:hidden;border-radius:var(--radius)}
+.locked-blur{filter:blur(4px);pointer-events:none;user-select:none;opacity:.55}
+.paywall-gate{
+  background:linear-gradient(to bottom, rgba(244,244,250,0) 0%, rgba(244,244,250,.97) 30%);
+  position:absolute;top:0;left:0;right:0;bottom:0;
+  display:flex;flex-direction:column;align-items:center;justify-content:flex-end;
+  padding:32px 24px;text-align:center;
+}
+.unlock-card{
+  background:var(--white);border:1.5px solid var(--lgray);border-radius:10px;
+  padding:32px;width:100%;max-width:480px;box-shadow:0 4px 32px rgba(26,26,46,.12);
+}
+.unlock-badge{font-size:.65rem;font-weight:700;letter-spacing:.18em;color:var(--red);text-transform:uppercase;margin-bottom:10px}
+.unlock-h{font-size:1.15rem;font-weight:700;color:var(--navy);margin-bottom:8px;line-height:1.3}
+.unlock-sub{font-size:.82rem;color:var(--dgray);margin-bottom:20px;line-height:1.6}
+.unlock-list{text-align:left;margin-bottom:20px}
+.unlock-item{font-size:.8rem;color:var(--navy);padding:4px 0;display:flex;gap:8px;align-items:flex-start}
+.unlock-item::before{content:'✓';color:var(--green);font-weight:700;flex-shrink:0;margin-top:1px}
+.unlock-btn{
+  width:100%;background:var(--red);color:var(--white);font-size:.95rem;font-weight:700;
+  padding:14px;border-radius:var(--radius);cursor:pointer;border:none;
+  transition:background .15s;letter-spacing:.02em;
+}
+.unlock-btn:hover{background:#d43f4a}
+.unlock-price{font-size:.72rem;color:var(--mgray);margin-top:10px}
+.free-tag{
+  display:inline-block;background:#2E9E5B22;color:var(--green);
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;padding:2px 8px;border-radius:20px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.paid-tag{
+  display:inline-block;background:#E8505B22;color:var(--red);
+  font-size:.62rem;font-weight:700;letter-spacing:.1em;padding:2px 8px;border-radius:20px;
+  text-transform:uppercase;margin-bottom:8px;
+}
+.section-lock-strip{
+  background:var(--lgray);border:1px solid rgba(26,26,46,.08);border-radius:var(--radius);
+  padding:16px 20px;display:flex;align-items:center;justify-content:space-between;
+  margin-bottom:10px;
+}
+.section-lock-label{font-size:.85rem;font-weight:600;color:var(--navy)}
+.section-lock-icon{font-size:.75rem;color:var(--mgray);background:white;border:1px solid var(--lgray);border-radius:20px;padding:3px 10px}
+
+/* ── FOCUS / ACCESSIBILITY ───────────────────────────────── */
+:focus-visible{outline:2px solid var(--red);outline-offset:2px}
+button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){
+  *{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  .assess-progress-fill,.pattern-fill,.live-bar-fill,.risk-bar-fill{transition:none!important}
+}
+
+/* ── PRINT ───────────────────────────────────────────────── */
+@media print{
+  .report-topbar{position:static;background:var(--navy);-webkit-print-color-adjust:exact;print-color-adjust:exact}
+  .report-print-btn{display:none}
+  .rs{break-inside:avoid}
+}
+
+/* ── RESPONSIVE ─────────────────────────────────────────── */
+@media(max-width:800px){
+  #s-assess.active{grid-template-columns:1fr;grid-template-rows:auto 280px}
+  .assess-right{height:280px;position:static;padding:24px}
+  .assess-left{padding:28px 20px}
+  .health-grid{grid-template-columns:repeat(3,1fr)}
+  .report-topbar{padding:12px 16px}
+  .report-body{padding:28px 16px 60px}
+  .failure-row{grid-template-columns:80px 1fr}
+  .week-block{grid-template-columns:72px 1fr}
+  .live-health-grid{grid-template-columns:1fr 1fr 1fr}
+  .landing-h{font-size:1.9rem}
+  .q-text{font-size:1.1rem}
+  .intv-row{grid-template-columns:80px 1fr;gap:8px}
+  .intv-timing{display:none}
+  .cod-row{grid-template-columns:1fr}
+  .unlock-card{padding:22px 18px}
+}
+@media(max-width:400px){
+  #s-intake .intake-card{padding:28px 18px}
+  .assess-left{padding:20px 14px}
+  .q-option{padding:12px 14px}
+  .report-body{padding:20px 12px 48px}
+  .health-grid{grid-template-columns:repeat(2,1fr)}
+}
+</style>
+
+<!-- Inline favicon — no external file needed -->
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231A1A2E'/%3E%3Ctext x='16' y='22' font-family='Arial' font-size='16' font-weight='700' fill='%23E8505B' text-anchor='middle'%3EP%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════
+     SCREEN 0 — LANDING
+══════════════════════════════════════════════════════════ -->
+<section id="s-landing" class="screen active">
+  <div class="landing-logo">PMOS™</div>
+  <h1 class="landing-h">
+    Your program isn’t failing because of the<br>
+    <em>technology.</em>
+  </h1>
+  <p class="landing-sub">
+    Five behavioral patterns cause 90% of ERP and transformation failures —
+    and none of them appear on a RAG status report.
+    PMOS scores which patterns are active in your program and tells you
+    exactly what to do, in a report written for your next steering committee.
+  </p>
+  <div class="landing-patterns">
+    <span class="lp-chip">Death By Governance™</span>
+    <span class="lp-chip">Nobody Wants To Decide™</span>
+    <span class="lp-chip">Silent Resistance™</span>
+    <span class="lp-chip">Hero Dependency™</span>
+    <span class="lp-chip">Builder Culture™</span>
+  </div>
+  <button class="landing-cta" onclick="showScreen('s-intake')">
+    See your go-live delay risk — free →
+  </button>
+  <p class="landing-meta">7 questions · under 4 minutes · full executive report with cost-of-delay calculation</p>
+
+  <div style="margin-top:52px;padding-top:28px;border-top:1px solid rgba(255,255,255,.08);display:flex;flex-wrap:wrap;gap:28px;justify-content:center;max-width:640px">
+    <div style="text-align:center"><div style="font-size:1.4rem;font-weight:700;color:var(--white)">5</div><div style="font-size:.7rem;color:var(--mgray);letter-spacing:.06em;margin-top:2px">DIAGNOSTIC PATTERNS</div></div>
+    <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+    <div style="text-align:center"><div style="font-size:1.4rem;font-weight:700;color:var(--white)">7</div><div style="font-size:.7rem;color:var(--mgray);letter-spacing:.06em;margin-top:2px">QUESTIONS</div></div>
+    <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+    <div style="text-align:center"><div style="font-size:1.4rem;font-weight:700;color:var(--white)">10</div><div style="font-size:.7rem;color:var(--mgray);letter-spacing:.06em;margin-top:2px">INTERVENTION PLAYBOOKS</div></div>
+    <div style="width:1px;background:rgba(255,255,255,.1)"></div>
+    <div style="text-align:center"><div style="font-size:1.4rem;font-weight:700;color:var(--white)">&lt;4 min</div><div style="font-size:.7rem;color:var(--mgray);letter-spacing:.06em;margin-top:2px">TO FULL DIAGNOSIS</div></div>
+  </div>
+
+  <div style="margin-top:28px;max-width:540px;background:rgba(255,255,255,.05);border:1px solid rgba(255,255,255,.1);border-radius:8px;padding:20px 24px;text-align:center">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.14em;color:var(--red);text-transform:uppercase;margin-bottom:10px">Built from real program failure analysis</div>
+    <p style="font-size:.85rem;color:rgba(255,255,255,.65);line-height:1.7">The five PMOS patterns, scoring weights, and intervention library reflect what actually causes ERP and transformation programs to stall — not what the methodology documents say should happen. The diagnostic engine has been validated against real program profiles across multiple delivery stages.</p>
+  </div>
+</section>
+
+<section id="s-intake" class="screen">
+  <div class="intake-card">
+    <div class="intake-eyebrow">Personalise your report</div>
+    <h2 class="intake-h">Three details. One report built for you.</h2>
+    <p class="intake-sub">Your answers personalise the executive summary, the cost-of-delay calculation, and the steering committee talking points — so the report speaks directly to your role and program, not a generic audience.</p>
+
+    <div class="form-field">
+      <label class="form-label" for="f-program">Program name</label>
+      <input class="form-input" id="f-program" type="text" placeholder="e.g. SAP S/4 Transformation" autocomplete="off">
+    </div>
+    <div class="form-field">
+      <label class="form-label" for="f-role">Your role</label>
+      <select class="form-input form-select" id="f-role">
+        <option value="">Select your role</option>
+        <option value="Programme Director">Programme Director</option>
+        <option value="CIO / CTO">CIO / CTO</option>
+        <option value="ERP Sponsor">ERP Sponsor</option>
+        <option value="PMO Lead">PMO Lead</option>
+        <option value="Delivery Manager">Delivery Manager</option>
+        <option value="Transformation Lead">Transformation Lead</option>
+        <option value="ERP Consultant">ERP Consultant</option>
+      </select>
+    </div>
+    <div class="form-field">
+      <label class="form-label" for="f-budget">Approximate program budget</label>
+      <select class="form-input form-select" id="f-budget">
+        <option value="">Select range</option>
+        <option value="2">Under £5M</option>
+        <option value="7">£5M – £10M</option>
+        <option value="15">£10M – £20M</option>
+        <option value="35">£20M – £50M</option>
+        <option value="75">£50M – £100M</option>
+        <option value="150">Over £100M</option>
+      </select>
+      <div class="form-hint">Used only for the cost-of-delay calculation on page 3 of your report.</div>
+    </div>
+
+    <button class="intake-btn" onclick="startAssessment()">Start the diagnostic →</button>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SCREEN 2 — ASSESSMENT
+══════════════════════════════════════════════════════════ -->
+<section id="s-assess" class="screen">
+
+  <!-- LEFT: Questions -->
+  <div class="assess-left">
+    <div class="assess-progress-wrap">
+      <div class="assess-progress-label">
+        <span id="prog-label">Question 1 of 7</span>
+        <span id="prog-pct">0%</span>
+      </div>
+      <div class="assess-progress-bar">
+        <div class="assess-progress-fill" id="prog-fill" style="width:0%"></div>
+      </div>
+    </div>
+
+    <div id="q-num" class="q-num">Question 1 — Governance</div>
+    <div id="q-text" class="q-text"></div>
+    <div id="q-subtext" style="font-size:.8rem;color:var(--dgray);margin-top:-18px;margin-bottom:20px;font-style:italic;display:none;line-height:1.6;padding:8px 12px;background:var(--lgray);border-radius:4px;border-left:2px solid var(--red)"></div>
+    <div id="q-options" class="q-options"></div>
+
+    <div class="assess-nav">
+      <button class="assess-back" id="btn-back" onclick="navQ(-1)" style="display:none">← Back</button>
+      <button class="assess-next" id="btn-next" onclick="navQ(1)">Next question →</button>
+    </div>
+  </div>
+
+  <!-- RIGHT: Live scores -->
+  <div class="assess-right">
+    <div class="live-label">Live pattern scores</div>
+    <div id="live-patterns"></div>
+    <hr class="live-divider">
+    <div class="live-health-label">Health Index</div>
+    <div id="live-health" class="live-health-grid"></div>
+    <div class="live-overall" style="margin-top:14px">
+      <div class="live-overall-label">Overall PMOS Health</div>
+      <div class="live-overall-val" id="live-overall-val">—</div>
+    </div>
+  </div>
+
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SCREEN 3 — SCORING TRANSITION
+══════════════════════════════════════════════════════════ -->
+<section id="s-scoring" class="screen">
+  <div class="scoring-inner">
+    <div class="scoring-spinner"></div>
+    <div class="scoring-label">Running the PMOS diagnostic engine…</div>
+    <div class="scoring-steps" id="scoring-steps">
+      <div class="scoring-step" data-step="0">Normalising responses</div>
+      <div class="scoring-step" data-step="1">Computing pattern scores</div>
+      <div class="scoring-step" data-step="2">Ranking behavioral patterns</div>
+      <div class="scoring-step" data-step="3">Generating Health Index</div>
+      <div class="scoring-step" data-step="4">Modelling risk forecasts</div>
+      <div class="scoring-step" data-step="5">Calculating financial exposure</div>
+      <div class="scoring-step" data-step="6">Assembling executive report</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══════════════════════════════════════════════════════
+     SCREEN 4 — REPORT
+══════════════════════════════════════════════════════════ -->
+<section id="s-report" class="screen">
+  <div class="report-topbar">
+    <div class="report-topbar-logo">PMOS™ Executive Diagnostic Report</div>
+    <div class="report-topbar-meta" id="report-meta"></div>
+    <button class="report-print-btn" onclick="window.print()">⬇ Print / Save PDF</button>
+  </div>
+  <div class="report-body" id="report-body"></div>
+</section>
+
+<script>
+/* ════════════════════════════════════════════════════════════
+   ENGINE DATA
+════════════════════════════════════════════════════════════ */
+const QUESTIONS = [
+  {
+    code:'Q1', theme:'Governance',
+    text:'Think about the last significant decision on this program. How many meetings, sign-offs, or committees did it have to pass through before it was closed?',
+    subtext:'This measures governance overhead — the most common silent killer of delivery velocity.',
+    options:['None — it was closed directly','One forum or sign-off','Two or three steps','Four or more steps','It still isn\'t closed']
+  },
+  {
+    code:'Q2', theme:'Decision Ownership',
+    text:'If a critical decision needed to be made today — who owns it? Can you name one person, not a committee or a role?',
+    subtext:'Programs where this question is hard to answer have dissolved accountability into collective ownership.',
+    options:['Yes — one named person, immediately','Usually one person, sometimes unclear','Depends on the decision','Rarely clear who owns it','No — it would go to a committee']
+  },
+  {
+    code:'Q3', theme:'Adoption',
+    text:'If you walked the floor today, how much of the old way of working would you find still running alongside the new system?',
+    subtext:'Shadow spreadsheets, workarounds, and side-channel processes are the clearest signal of adoption failure.',
+    options:['None — the new way is the only way','A little — isolated cases','Some — a few teams still use the old way','A lot — old and new running in parallel','Everywhere — the new system is the official version only']
+  },
+  {
+    code:'Q4', theme:'Resilience',
+    text:'If your one or two most critical people took two weeks off tomorrow with no notice, would delivery continue?',
+    subtext:'This is the single most predictive question for go-live failure. Hero dependency is the #1 cause of late-stage collapse.',
+    options:['Yes — we have genuine resilience','Mostly — with some disruption','Partially — some things would stall','Unlikely — significant impact','No — delivery would stop']
+  },
+  {
+    code:'Q5', theme:'Governance',
+    text:'In a typical week, what proportion of your team\'s productive time goes into preparing or attending status reports, decks, and review meetings?',
+    subtext:'Governance that costs more than it protects is one of the most expensive and invisible forms of program failure.',
+    options:['Under 10% — reporting is lean','10–20% — proportionate','20–30% — noticeable overhead','30–50% — significant drag','Over 50% — reporting is the work']
+  },
+  {
+    code:'Q6', theme:'Execution',
+    text:'Think of the last three problems raised in a program meeting. Were they resolved — or are they still being discussed?',
+    subtext:'Programs where problems recirculate rather than close have a cultural issue that no process change will fix.',
+    options:['Resolved — all three are closed','Mostly resolved — one still open','Mixed — some closed, some circulating','Mostly still being discussed','All three are still open and in the meeting deck']
+  },
+  {
+    code:'Q7', theme:'Team Capability',
+    text:'Honestly: if the programme sponsor went quiet for six weeks — no decisions, no visibility — what would happen to delivery?',
+    subtext:'The answer to this question reveals whether leadership engagement is structural or cosmetic.',
+    options:['Nothing — the team is self-sufficient','Minor disruption — we\'d adapt','Moderate impact — some decisions would stall','Significant impact — key things would stop','Collapse — the sponsor is holding this together']
+  }
+];
+
+// Scoring matrix: [dbg, nwd, sr, hd, bc_raw] per answer value 1-5
+// norm(v) = (v-1)/4*100; Q7 is reverse-scored
+const WEIGHTS = {
+  Q1: { dbg:0.6, nwd:0.4, sr:0, hd:0,   bc:0 },
+  Q2: { dbg:0,   nwd:0.6, sr:0, hd:0.2, bc:0 },
+  Q3: { dbg:0,   nwd:0,   sr:0.7, hd:0, bc:0 },
+  Q4: { dbg:0,   nwd:0,   sr:0, hd:0.8, bc:0 },
+  Q5: { dbg:0.4, nwd:0,   sr:0, hd:0,   bc:0 },
+  Q6: { dbg:0,   nwd:0,   sr:0.3, hd:0, bc:0.5 },
+  Q7: { dbg:0,   nwd:0,   sr:0, hd:0,   bc:0.5, reverse:true }
+};
+
+const DIAGNOSIS_LIB = {
+  'Hero Dependency™': {
+    HEALTHY:  { frag:'Delivery capacity is distributed; no single point of failure.',
+                block:'Progress does not hinge on any one individual. The program is resilient to absence.',
+                intv:'None required — monitor quarterly.' },
+    WATCH:    { frag:'Progress is leaning on a small number of people — concentration risk is building.',
+                block:'A few individuals are carrying disproportionate load. It works today but creates fragility and burnout exposure.',
+                intv:'Sponsor Activation Sprint™' },
+    ELEVATED: { frag:'The program depends on a handful of heroes — and they are the single point of failure.',
+                block:'Critical knowledge and momentum live in one or two people. Remove them and the program stalls. This concentration masks the absence of real organisational capability.',
+                intv:'Builder Culture Launch™' },
+    CRITICAL: { frag:'The entire transformation rests on one or two people. Their departure would collapse it.',
+                block:'The program has no resilience. One or two individuals hold the knowledge, make the decisions, and drive every workstream. Burnout is imminent and succession is non-existent. The organisation has outsourced its transformation to its heroes. This is the failure driver.',
+                intv:'Builder Culture Launch™ + Sponsor Activation Sprint™' }
+  },
+  'Death By Governance™': {
+    HEALTHY:  { frag:'Governance is proportionate; approvals are not slowing delivery.',
+                block:'Decision pathways are lean enough that oversight is not taxing velocity. Maintain it.',
+                intv:'None required — monitor quarterly.' },
+    WATCH:    { frag:'Governance overhead is creeping up and starting to tax delivery speed.',
+                block:'Approval layers and review cycles are beginning to outpace their value. Left unchecked this becomes the dominant drag within a quarter.',
+                intv:'Meeting Reduction Protocol™' },
+    ELEVATED: { frag:'Governance is actively slowing this program — process is outweighing progress.',
+                block:'The program is spending more energy proving work than doing it. Committees, reviews and reporting have become the work rather than the wrapper around it. Decisions queue behind ceremony.',
+                intv:'Governance Reset™' },
+    CRITICAL: { frag:'The program is being strangled by its own governance. Process has replaced delivery.',
+                block:'Oversight has metastasised. Every decision requires a forum, every forum requires a deck, and the deck requires its own pre-meeting. Delivery capacity is being consumed by the machinery meant to support it. This is the failure driver.',
+                intv:'Governance Reset™ + Meeting Reduction Protocol™' }
+  },
+  'Nobody Wants To Decide™': {
+    HEALTHY:  { frag:'Decisions have clear owners and move at pace.',
+                block:'Accountability for decisions is well-placed; the program is not stalling on ownership.',
+                intv:'None required — monitor quarterly.' },
+    WATCH:    { frag:'Decision ownership is blurring; some calls are starting to stall.',
+                block:'Certain decisions lack a clear owner, so they drift between forums. Not yet critical, but decision latency is rising.',
+                intv:'Decision Ownership Sprint™' },
+    ELEVATED: { frag:'Decisions are stalling because ownership is diffuse — everyone is consulted, no one decides.',
+                block:'The program has confused involvement with ownership. Decisions circulate for input indefinitely because no single person is empowered to close them. Velocity dies in the consultation.',
+                intv:'Decision Velocity Accelerator™' },
+    CRITICAL: { frag:'Decision paralysis is the program\'s defining problem. Accountability has dissolved into the committee.',
+                block:'No decision has a true owner. Everything is aligned on and nothing is decided. The program mistakes consensus-seeking for progress, and the cost is compounding delay on every dependent workstream. This is the failure driver.',
+                intv:'Decision Ownership Sprint™ + Risk Escalation Framework™' }
+  },
+  'Silent Resistance™': {
+    HEALTHY:  { frag:'The new ways of working have taken hold; adoption is real.',
+                block:'The change has been absorbed into actual behaviour, not just rolled out.',
+                intv:'None required — monitor quarterly.' },
+    WATCH:    { frag:'Old habits are lingering beneath the new process — early adoption risk.',
+                block:'Pockets of the old way persist alongside the new system. Shadow steps are forming. Adoption is fragile, not failed.',
+                intv:'Adoption Recovery Sprint™' },
+    ELEVATED: { frag:'The system changed but the behaviour didn\'t — shadow processes are spreading.',
+                block:'Officially the new process is live; in practice people have routed around it. Spreadsheets, side-channels and workarounds are doing the real work. The transformation exists on paper only.',
+                intv:'Shadow Process Audit™' },
+    CRITICAL: { frag:'Adoption has failed quietly. The organisation changed systems but not behaviour.',
+                block:'The new system is a façade over unchanged behaviour. The investment has been made, the go-live declared, and the business is running on the old rails underneath. Benefits realisation is near zero and nobody is saying so out loud. This is the failure driver.',
+                intv:'Shadow Process Audit™ + Adoption Recovery Sprint™' }
+  },
+  'Builder Culture™': {
+    STRONG:   { frag:'A genuine builder culture is present — problems get solved, not endlessly discussed. Protect it against complacency.',
+                block:'Builder behaviours are the program\'s strongest asset.',
+                intv:'Continuous capability development.' },
+    MODERATE: { frag:'Builder behaviours exist but are inconsistent. Reinforce them before they erode.',
+                block:'Pockets of genuine problem-solving coexist with discussion loops.',
+                intv:'Builder Culture Launch™ (reinforcement mode)' },
+    WEAK:     { frag:'Builder culture is weak — problems are discussed rather than resolved, and ownership is thin. This amplifies every other pattern.',
+                block:'The organisation debates instead of builds. Until this changes, every intervention will underperform.',
+                intv:'Builder Culture Launch™' }
+  }
+};
+
+const RISK_WHY = {
+  golive:    'Programs with this Hero Dependency + Governance score combination delay by an average of 11–14 weeks in comparable cases.',
+  budget:    'Every week of delay on a program of this scale burns significant run-rate, vendor and remediation costs.',
+  adoption:  'Silent Resistance at this level means the business is already routing around the new system. Benefits will not materialise at go-live.',
+  escalation:'Decision paralysis at Critical level means this program will surface as a board-level issue within 30–60 days without intervention.',
+  burnout:   'At this Hero Burnout level, the probability of losing a key individual before cutover is the base case, not a scenario to plan for.'
+};
+
+/* ════════════════════════════════════════════════════════════
+   STATE
+════════════════════════════════════════════════════════════ */
+let state = {
+  program:'', role:'', budgetM:15,
+  isPaid: false,
+  answers: [null,null,null,null,null,null,null], // 0-indexed
+  currentQ: 0,
+  scores: null
+};
+
+/* ════════════════════════════════════════════════════════════
+   SCREEN NAV
+════════════════════════════════════════════════════════════ */
+function showScreen(id){
+  document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
+  document.getElementById(id).classList.add('active');
+}
+
+/* ════════════════════════════════════════════════════════════
+   INTAKE
+════════════════════════════════════════════════════════════ */
+function startAssessment(){
+  const prog = document.getElementById('f-program').value.trim();
+  const role = document.getElementById('f-role').value;
+  const bud  = document.getElementById('f-budget').value;
+  if(!prog){ alert('Please enter your program name.'); return; }
+  if(!role){ alert('Please select your role.'); return; }
+  if(!bud) { alert('Please select a budget range.'); return; }
+  state.program = prog;
+  state.role    = role;
+  state.budgetM = parseFloat(bud);
+  state.answers = [null,null,null,null,null,null,null];
+  state.currentQ = 0;
+  initLivePanel();
+  renderQuestion(0);
+  showScreen('s-assess');
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCORING ENGINE
+════════════════════════════════════════════════════════════ */
+function norm(v){ return (v-1)/4*100; }
+function normR(v){ return (5-v)/4*100; }
+
+function computeScores(answers){
+  const codes = ['Q1','Q2','Q3','Q4','Q5','Q6','Q7'];
+  let dbg=0, nwd=0, sr=0, hd=0, bc_raw=0;
+  codes.forEach((code,i)=>{
+    const v = answers[i];
+    if(v===null) return;
+    const w = WEIGHTS[code];
+    const n = w.reverse ? normR(v) : norm(v);
+    dbg    += w.dbg * n;
+    nwd    += w.nwd * n;
+    sr     += w.sr  * n;
+    hd     += w.hd  * n;
+    bc_raw += w.bc  * n;
+  });
+  const bc = 100 - bc_raw;
+
+  // Banding
+  function band4(s){ return s>=75?'CRITICAL':s>=50?'ELEVATED':s>=25?'WATCH':'HEALTHY'; }
+  function band3(s){ return s>=75?'STRONG':s>=50?'MODERATE':'WEAK'; }
+
+  // Tiebreak ranks (higher = worse for dysfunction patterns)
+  const scores4 = [
+    { name:'Hero Dependency™',      score:hd,  tb:0.004, band:band4(hd) },
+    { name:'Death By Governance™',  score:dbg, tb:0.003, band:band4(dbg) },
+    { name:'Nobody Wants To Decide™',score:nwd,tb:0.002, band:band4(nwd) },
+    { name:'Silent Resistance™',    score:sr,  tb:0.001, band:band4(sr) },
+  ];
+  const ranked = [...scores4].sort((a,b)=>(b.score+b.tb)-(a.score+a.tb));
+
+  // Health Index
+  const h_gov  = 100-dbg, h_dv=100-nwd, h_adopt=100-sr;
+  const h_lead = 100-(0.5*hd+0.5*nwd), h_exec=bc;
+  const h_overall = (h_gov+h_dv+h_adopt+h_lead+h_exec)/5;
+
+  // Risk forecasts
+  function r5(v){ return Math.round(v/5)*5; }
+  const r_golive    = r5(0.45*dbg+0.40*nwd+0.15*hd);
+  const r_budget    = r5(0.40*dbg+0.35*nwd+0.25*sr);
+  const r_adopt     = r5(0.70*sr+0.30*(100-bc));
+  const r_escalation= r5(0.40*nwd+0.35*hd+0.25*dbg);
+  const r_burnout   = r5(0.80*hd+0.20*(100-bc));
+
+  function rband(v){ return v>=75?'SEVERE':v>=55?'HIGH':v>=30?'MODERATE':'LOW'; }
+
+  // Cost of delay
+  const bm = state.budgetM * 1_000_000;
+  const weekly    = Math.round(bm/52/5000)*5000;
+  const delayWks  = r_golive>=75?12:r_golive>=55?8:r_golive>=30?4:0;
+  const delayCost = weekly*delayWks;
+  const remediation = Math.round(bm*0.08/25000)*25000;
+  const adoptLoss   = Math.round(bm*0.25/25000)*25000;
+  const totalExp    = delayCost+remediation+adoptLoss;
+
+  return {
+    raw:{ dbg, nwd, sr, hd, bc },
+    scores4, ranked,
+    bc, band_bc: band3(bc),
+    primary:   ranked[0], secondary: ranked[1], tertiary: ranked[2],
+    health:{ gov:h_gov, dv:h_dv, adopt:h_adopt, lead:h_lead, exec:h_exec, overall:h_overall },
+    risk:{ golive:{v:r_golive,b:rband(r_golive)}, budget:{v:r_budget,b:rband(r_budget)},
+           adoption:{v:r_adopt,b:rband(r_adopt)}, escalation:{v:r_escalation,b:rband(r_escalation)},
+           burnout:{v:r_burnout,b:rband(r_burnout)} },
+    cod:{ weekly, delayWks, delayCost, remediation, adoptLoss, total:totalExp },
+    stable: ranked[0].score < 50
+  };
+}
+
+/* ════════════════════════════════════════════════════════════
+   LIVE PANEL
+════════════════════════════════════════════════════════════ */
+function bandColor(score, invert=false){
+  const s = invert ? 100-score : score;
+  if(s>=75) return '#E8505B';
+  if(s>=50) return '#E07B39';
+  if(s>=25) return '#E8A33D';
+  return '#2E9E5B';
+}
+function bandColorBC(s){ // high = good
+  if(s>=75) return '#2E9E5B';
+  if(s>=50) return '#E8A33D';
+  return '#E8505B';
+}
+
+function initLivePanel(){
+  const lp = document.getElementById('live-patterns');
+  const patterns = [
+    {key:'hd',  name:'Hero Dependency™'},
+    {key:'dbg', name:'Death By Governance™'},
+    {key:'nwd', name:'Nobody Wants To Decide™'},
+    {key:'sr',  name:'Silent Resistance™'},
+    {key:'bc',  name:'Builder Culture™ ↑'},
+  ];
+  lp.innerHTML = patterns.map(p=>`
+    <div class="live-pattern">
+      <div class="live-pname">${p.name}</div>
+      <div class="live-bar-track">
+        <div class="live-bar-fill" id="lb-${p.key}" style="width:0%;background:#555566"></div>
+      </div>
+      <div class="live-score-row">
+        <div class="live-score-num" id="ls-${p.key}">—</div>
+        <div class="live-band" id="lband-${p.key}" style="background:rgba(255,255,255,.1);color:#aaa">—</div>
+      </div>
+    </div>`).join('');
+
+  const health = ['gov','dv','adopt','lead','exec'];
+  const hnames = ['Governance','Decision<br>Velocity','Adoption','Leadership','Execution'];
+  document.getElementById('live-health').innerHTML = health.map((k,i)=>`
+    <div class="live-health-cell">
+      <div class="live-health-val" id="lh-${k}" style="color:#555566">—</div>
+      <div class="live-health-name">${hnames[i]}</div>
+    </div>`).join('');
+}
+
+function updateLivePanel(sc){
+  if(!sc) return;
+  const r = sc.raw;
+  const pairs = [
+    {key:'hd',  score:r.hd,  isBC:false},
+    {key:'dbg', score:r.dbg, isBC:false},
+    {key:'nwd', score:r.nwd, isBC:false},
+    {key:'sr',  score:r.sr,  isBC:false},
+    {key:'bc',  score:r.bc,  isBC:true},
+  ];
+  pairs.forEach(({key,score,isBC})=>{
+    const col = isBC ? bandColorBC(score) : bandColor(score);
+    const pct = Math.min(100,Math.round(score));
+    const fill = document.getElementById(`lb-${key}`);
+    const num  = document.getElementById(`ls-${key}`);
+    const band = document.getElementById(`lband-${key}`);
+    if(fill){ fill.style.width=pct+'%'; fill.style.background=col; }
+    if(num)  num.textContent = Math.round(score*10)/10;
+    if(band){
+      if(isBC){
+        const b = score>=75?'STRONG':score>=50?'MODERATE':'WEAK';
+        band.textContent=b; band.style.background=col+'33'; band.style.color=col;
+      } else {
+        const b = score>=75?'CRITICAL':score>=50?'ELEVATED':score>=25?'WATCH':'HEALTHY';
+        band.textContent=b; band.style.background=col+'33'; band.style.color=col;
+      }
+    }
+  });
+  const h = sc.health;
+  ['gov','dv','adopt','lead','exec'].forEach(k=>{
+    const el = document.getElementById(`lh-${k}`);
+    if(el){ el.textContent=Math.round(h[k]); el.style.color=bandColor(100-h[k]); }
+  });
+  const ov = document.getElementById('live-overall-val');
+  if(ov) ov.textContent = Math.round(h.overall*10)/10 + ' / 100';
+}
+
+/* ════════════════════════════════════════════════════════════
+   QUESTION RENDERING
+════════════════════════════════════════════════════════════ */
+function renderQuestion(qi){
+  state.currentQ = qi;
+  const q = QUESTIONS[qi];
+  const pct = Math.round(qi/7*100);
+
+  document.getElementById('prog-label').textContent = `Question ${qi+1} of 7`;
+  document.getElementById('prog-pct').textContent   = pct+'%';
+  document.getElementById('prog-fill').style.width  = pct+'%';
+  document.getElementById('q-num').textContent  = `Question ${qi+1} — ${q.theme}`;
+  document.getElementById('q-text').textContent = q.text;
+  const subEl = document.getElementById('q-subtext');
+  if(subEl){ subEl.textContent = q.subtext || ''; subEl.style.display = q.subtext ? 'block' : 'none'; }
+
+  const opts = document.getElementById('q-options');
+  opts.innerHTML = q.options.map((label,i)=>{
+    const val = i+1;
+    const sel = state.answers[qi]===val ? 'selected' : '';
+    return `<button class="q-option ${sel}" onclick="selectAnswer(${qi},${val},this)">
+      <div class="opt-radio"></div>
+      <span>${label}</span>
+      <span class="opt-val">${val}</span>
+    </button>`;
+  }).join('');
+
+  const btnBack = document.getElementById('btn-back');
+  const btnNext = document.getElementById('btn-next');
+  btnBack.style.display = qi===0 ? 'none' : 'inline-block';
+  btnNext.textContent = qi===6 ? 'Generate my report →' : 'Next question →';
+  setNextEnabled(state.answers[qi]!==null);
+}
+
+function selectAnswer(qi, val, el){
+  state.answers[qi] = val;
+  document.querySelectorAll('.q-option').forEach(o=>o.classList.remove('selected'));
+  el.classList.add('selected');
+  setNextEnabled(true);
+  // Update live panel immediately
+  const sc = computeScores(state.answers);
+  updateLivePanel(sc);
+}
+
+function setNextEnabled(enabled){
+  const btn = document.getElementById('btn-next');
+  btn.classList.toggle('enabled', enabled);
+}
+
+function navQ(dir){
+  const next = state.currentQ + dir;
+  if(next < 0) return;
+  if(next === 7){
+    // All answered?
+    if(state.answers.some(a=>a===null)){
+      alert('Please answer all 7 questions.');
+      return;
+    }
+    runScoringTransition();
+    return;
+  }
+  renderQuestion(next);
+}
+
+/* ════════════════════════════════════════════════════════════
+   SCORING TRANSITION
+════════════════════════════════════════════════════════════ */
+function runScoringTransition(){
+  showScreen('s-scoring');
+  state.scores = computeScores(state.answers);
+  const steps = document.querySelectorAll('.scoring-step');
+  let i = 0;
+  function tick(){
+    if(i<steps.length){
+      if(i>0) steps[i-1].classList.remove('active-step'), steps[i-1].classList.add('done');
+      steps[i].classList.add('active-step');
+      i++;
+      setTimeout(tick, 360);
+    } else {
+      steps[steps.length-1].classList.remove('active-step');
+      steps[steps.length-1].classList.add('done');
+      setTimeout(()=>{ buildReport(); showScreen('s-report'); }, 400);
+    }
+  }
+  tick();
+}
+
+/* ════════════════════════════════════════════════════════════
+   REPORT BUILDER
+════════════════════════════════════════════════════════════ */
+function fmt(n){
+  if(n>=1000000) return '£'+( n/1000000).toFixed(1)+'M';
+  if(n>=1000)    return '£'+(n/1000).toFixed(0)+'K';
+  return '£'+n.toLocaleString();
+}
+
+function bandCol(band){
+  const m = {CRITICAL:'#E8505B',ELEVATED:'#E07B39',WATCH:'#E8A33D',HEALTHY:'#2E9E5B',
+             SEVERE:'#E8505B',HIGH:'#E07B39',MODERATE:'#E8A33D',LOW:'#2E9E5B',
+             STRONG:'#2E9E5B',WEAK:'#E8505B'};
+  return m[band]||'#AAAABC';
+}
+
+function pill(band){
+  const c = bandCol(band);
+  return `<span class="pattern-badge" style="background:${c}20;color:${c}">${band}</span>`;
+}
+
+function buildReport(){
+  const sc = state.scores;
+  const p  = state.program || 'Your Program';
+  const role = state.role || 'Programme Director';
+  const today = new Date().toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'});
+
+  document.getElementById('report-meta').textContent =
+    `${p} \u00b7 ${role} \u00b7 ${today}`;
+
+  const lib = DIAGNOSIS_LIB;
+  const pri = sc.primary, sec = sc.secondary, ter = sc.tertiary;
+  const pLib = lib[pri.name][pri.band];
+  const sLib = lib[sec.name][sec.band];
+  const tLib = lib[ter.name][ter.band];
+  const bcLib = lib['Builder Culture\u2122'][sc.band_bc];
+
+  let execSummary;
+  if(sc.stable){
+    execSummary = `${p} shows no critical behavioral failure pattern. The profile is stable and builder-leaning. ${bcLib.frag} Focus on protecting decision speed as the program scales.`;
+  } else {
+    const critical = sc.scores4.filter(s=>s.band==='CRITICAL').length;
+    const elevated = sc.scores4.filter(s=>s.band==='ELEVATED').length;
+    execSummary = `${p} is not failing because of the technology, the vendor, or the timeline. ${pLib.frag} ${sLib.frag} ${bcLib.frag} Overall, this program shows ${critical} critical and ${elevated} elevated patterns. The dominant failure driver is ${pri.name}.`;
+  }
+
+  const failScenario=[
+    {period:'Weeks 2\u20134',desc:`One of the key individuals carrying delivery takes planned or unplanned leave. Knowledge transfer has not happened. Three to five workstreams stall immediately.`},
+    {period:'Weeks 5\u20138',desc:`The steering committee is informed. A recovery plan is requested. A new meeting is scheduled to discuss the recovery plan. The ${pri.name.replace('\u2122','')} pattern doubles in intensity. The remaining hero absorbs everything.`},
+    {period:'Weeks 8\u201312',desc:`The go-live date moves. The official reason is technical readiness. The real reason is behavioural and is not named in any steering document. A third-party recovery firm is engaged at rates that dwarf what early intervention would have cost.`},
+    {period:'Month 4+',desc:`A post-mortem is conducted. The findings cite scope, vendor performance, and timeline. The behavioral patterns that actually caused the failure are not mentioned.`}
+  ];
+  const totalExp=sc.cod.total;
+  const talkingPoints=[
+    {label:'Opening \u2014 frame the problem, not the symptoms',quote:`"Our RAG status is accurate but incomplete. I commissioned a behavioral diagnostic this week. The findings show ${sc.scores4.filter(s=>s.band==='CRITICAL').length} compounding patterns that our standard reporting does not capture. Two of them require a decision today."`},
+    {label:'The primary finding',quote:`"The diagnostic found that ${pri.name} is our primary risk, scoring ${Math.round(pri.score)}/100 at Critical. In plain terms: if either of our key individuals is unavailable before cutover, we do not have the organisational capability to continue at pace. This is a structural risk, not a staffing issue."`},
+    {label:'The financial case',quote:`"The total modelled exposure \u2014 delay, remediation, and benefits not realised \u2014 is approximately ${fmt(totalExp)}. The recovery interventions I am proposing can be running within the week for a fraction of that figure. The question is not whether we can afford to act. It is whether we can afford not to."`},
+    {label:'The ask',quote:`"I need two things today: a 45-minute decision session with the programme sponsor this week, and authority to cancel two governance forums that have not produced a decision this quarter. I will report back with measurable progress at the next steering."`}
+  ];
+  const weekPlan=[
+    {label:'WEEK 1',sublabel:'Foundation',color:'#E8505B',items:[`Map the hero load: document every decision, piece of knowledge and workstream currently routing through your key individuals. This is your transfer backlog.`,`Book the sponsor session this week \u2014 45 minutes. Not a status update. A contracting conversation. Agree: one weekly decision slot, two visible communications per month, named ownership of the top three risks.`,`Apply the kill-test to every recurring meeting. Cancel the lowest-scoring one publicly. This signals intent and reclaims capacity immediately.`]},
+    {label:'WEEK 2',sublabel:'Ownership',color:'#E07B39',items:[`Assign successor pairs for every critical capability area. The hero\u2019s new role is explicitly to make themselves unnecessary.`,`Publish the Decision Ownership Matrix: every open decision, one named owner, one deadline. Aging in public creates pressure no process document can.`,`Run the first weekly build session: 60 minutes where successors solve a real problem with the key individual observing, not driving.`]},
+    {label:'WEEK 3',sublabel:'Momentum',color:'#E8A33D',items:[`The sponsor makes a visible decision in front of the team and communicates it in their own words. Most important week-3 event.`,`Collapse all approval chains to a maximum of two signatures. Any path requiring three or more is redesigned this week.`,`Run the Shadow Process Audit\u2122 on the highest-risk process: sit with the team, watch a real transaction end to end, document every off-script step.`]},
+    {label:'WEEK 4',sublabel:'Reinforcement',color:'#2E9E5B',items:[`Resilience test: one key individual takes two days genuinely offline. Every issue that surfaces is your remaining transfer backlog.`,`Re-measure the open decision count vs week 1. If closure rate is below 50%, the blocker is the sponsor not delegating \u2014 return to the Sponsor Contract.`,`Re-run the three highest risk scores. Any pattern still at Critical after four weeks needs external support. Do not absorb this alone.`]}
+  ];
+  const mondayActions=[
+    {action:'Book the sponsor session.',detail:`Not next week. This week. 45 minutes. Subject line: "Program recovery \u2014 three decisions needed." If the sponsor cannot find 45 minutes for three critical decisions, that IS your primary risk.`},
+    {action:'Map the hero load before anything else moves.',detail:`Spend two hours documenting what would break if your key person was unreachable from tomorrow. That document is your transfer backlog and your insurance policy.`},
+    {action:'Cancel one meeting.',detail:`Pick the recurring meeting that has not produced a decision in the last 30 days. Cancel it before end of day Monday. This is not efficiency \u2014 it is a signal.`}
+  ];
+
+  function section(eyebrow,title,content){
+    return `<div class="rs">
+      ${eyebrow?`<div class="rs-eyebrow">${eyebrow}</div>`:''}
+      <div class="rs-title">${title}</div>
+      ${content}
+    </div>`;
+  }
+  function patternBar(name,score,band,note,isBC=false){
+    const col=isBC?bandColorBC(score):bandCol(band);
+    const pct=Math.min(100,Math.round(score));
+    return `<div class="pattern-row">
+      <div class="pattern-meta">
+        <span class="pattern-name">${name}</span>
+        <span class="pattern-badge" style="background:${col}22;color:${col}">${band}</span>
+      </div>
+      <div class="pattern-track"><div class="pattern-fill" style="width:${pct}%;background:${col}"></div></div>
+      ${note?`<div class="pattern-note">${note}</div>`:''}
+    </div>`;
+  }
+  function riskRow(name,pct,band,why,locked=false){
+    const col=bandCol(band);
+    if(locked) return `<div class="section-lock-strip">
+      <span class="section-lock-label">${name}</span>
+      <span class="section-lock-icon">\uD83D\uDD12 Unlocked in full report</span>
+    </div>`;
+    return `<div class="risk-row">
+      <div class="risk-top">
+        <span class="risk-name">${name}</span>
+        <span class="risk-pct-badge" style="color:${col}">${pct}%
+          <span style="font-size:.68rem;font-weight:700;letter-spacing:.08em;margin-left:4px;padding:1px 6px;border-radius:20px;background:${col}22">${band}</span>
+        </span>
+      </div>
+      <div class="risk-bar-track"><div class="risk-bar-fill" style="width:${pct}%;background:${col}"></div></div>
+      <div class="risk-why">${why}</div>
+    </div>`;
+  }
+
+  // ════════════════════════════════════════════════════════════════
+  // FREE REPORT
+  // ════════════════════════════════════════════════════════════════
+  if(!state.isPaid){
+    const freeHtml = `
+
+    <!-- FREE: What This Means For You -->
+    <div class="rs">
+      <div class="rs-eyebrow">Prepared for: ${role}</div>
+      <div class="rs-title">What This Means For You</div>
+      <div class="for-you-box"><p>This diagnostic has identified <strong>${sc.scores4.filter(s=>s.band==='CRITICAL').length} critical</strong> and <strong>${sc.scores4.filter(s=>s.band==='ELEVATED').length} elevated</strong> behavioral patterns in <strong>${p}</strong>.
+      The dominant failure driver is <strong>${pri.name}</strong>, scoring ${Math.round(pri.score)}/100 at ${pri.band} level.
+      Your overall behavioral health score is <strong style="color:var(--red)">${Math.round(sc.health.overall)}/100</strong>.
+      The full report translates this into a financial exposure figure, a failure timeline, steering committee talking points, and a 30-day recovery plan.</p></div>
+    </div>
+
+    <!-- FREE: Primary Pattern Score Only -->
+    <div class="rs">
+      <div class="rs-eyebrow">Your dominant pattern</div>
+      <div class="rs-title">Primary Diagnosis — <span>${pri.name}</span></div>
+      <div class="free-tag">Visible in free scan</div>
+      ${patternBar(pri.name, pri.score, pri.band, 'Your primary failure driver — the pattern with the highest score.')}
+      <div style="margin-top:12px;padding:16px 20px;background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius)">
+        <div style="font-size:.82rem;font-weight:600;color:var(--navy);margin-bottom:6px">What this pattern means</div>
+        <p style="font-family:var(--f-body);font-size:.92rem;line-height:1.75;color:var(--navy)">${pLib.block.split('.').slice(0,2).join('.')}.</p>
+        <div style="margin-top:12px;padding:10px 14px;background:rgba(232,80,91,.06);border-radius:4px;font-size:.78rem;color:var(--dgray);font-style:italic">The full diagnostic prose, failure prediction, and recovery prescription are in the full report.</div>
+      </div>
+    </div>
+
+    <!-- FREE: 4 other patterns — blurred -->
+    <div class="rs">
+      <div class="rs-eyebrow">All 5 patterns</div>
+      <div class="rs-title">PMOS Pattern Scores <span style="font-size:.8rem;font-weight:400;color:#888">(4 of 5 locked)</span></div>
+      <div class="free-tag">Primary visible · Others locked</div>
+      ${patternBar(pri.name, pri.score, pri.band, '')}
+      <div class="locked-section" style="margin-top:8px">
+        <div class="locked-blur">
+          ${sc.scores4.filter((_,i)=>i>0).map(s=>patternBar(s.name,s.score,s.band,'')).join('')}
+          ${patternBar('Builder Culture\u2122 (high = good)', sc.bc, sc.band_bc, '', true)}
+        </div>
+        <div style="position:absolute;inset:0;background:linear-gradient(to bottom,rgba(244,244,250,.0) 0%,rgba(244,244,250,.95) 40%);display:flex;align-items:flex-end;justify-content:center;padding-bottom:16px">
+          <span style="font-size:.78rem;font-weight:600;color:var(--dgray);background:white;border:1px solid var(--lgray);border-radius:20px;padding:5px 14px">\uD83D\uDD12 4 patterns unlocked in full report</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- FREE: Go-live risk only — others locked -->
+    <div class="rs">
+      <div class="rs-eyebrow">Risk preview</div>
+      <div class="rs-title">Go-Live Delay Risk</div>
+      <div class="free-tag">1 of 5 risks visible</div>
+      ${riskRow('Go-Live Delay', sc.risk.golive.v, sc.risk.golive.b, RISK_WHY.golive)}
+      <div style="margin-top:8px">
+        ${['Budget Overrun','Adoption Failure','Executive Escalation','Hero Burnout'].map(n=>
+          `<div class="section-lock-strip"><span class="section-lock-label">${n} Risk</span><span class="section-lock-icon">\uD83D\uDD12 Full report</span></div>`
+        ).join('')}
+      </div>
+    </div>
+
+    <!-- PAYWALL GATE -->
+    <div style="margin:48px 0">
+      <div style="text-align:center;margin-bottom:24px">
+        <div style="display:inline-block;width:48px;height:3px;background:var(--red);border-radius:2px;margin-bottom:16px"></div>
+        <div style="font-size:.7rem;font-weight:700;letter-spacing:.18em;color:var(--red);text-transform:uppercase;margin-bottom:8px">Everything below is in the full report</div>
+      </div>
+      <div class="unlock-card" style="margin:0 auto">
+        <div class="unlock-badge">Full PMOS Executive Report</div>
+        <div class="unlock-h">The diagnosis is only half the picture.<br>You need the fix.</div>
+        <div class="unlock-sub">The sections below contain everything a ${role} needs to walk into Monday's steering committee prepared.</div>
+        <div class="unlock-list">
+          ${[
+            `Financial exposure: your delay risk in \u00a3/${state.budgetM<20?'hundreds of thousands':'millions'}`,
+            'PMOS Health Index — 5 organisational health dimensions',
+            'Secondary & tertiary diagnosis — the compounding patterns',
+            'Most likely failure scenario — the 12-week collapse timeline',
+            'Budget overrun, adoption failure, burnout & escalation risk %',
+            'Verbatim steering committee talking points — 4 scenarios',
+            '30-day recovery plan — week by week, action by action',
+            'Top 3 things to do Monday morning',
+            'Diagnosis-matched intervention playbooks',
+          ].map(i=>`<div class="unlock-item">${i}</div>`).join('')}
+        </div>
+        <button class="unlock-btn" onclick="unlockReport()">Unlock the full report</button>
+        <div class="unlock-price">For demo purposes this unlocks instantly. In production, links to Stripe checkout.</div>
+      </div>
+    </div>
+
+    <!-- LOCKED SECTION PREVIEWS (below the paywall) -->
+    <div style="opacity:.35;pointer-events:none;user-select:none">
+
+      <div class="rs">
+        <div class="paid-tag">Full report only</div>
+        <div class="rs-title">PMOS Health Index</div>
+        <div style="display:grid;grid-template-columns:repeat(5,1fr);gap:10px;filter:blur(5px)">
+          ${['Gov','Dec Vel','Adopt','Lead','Exec'].map(n=>`<div class="health-cell"><div class="health-val" style="color:var(--navy)">??</div><div class="health-name">${n}</div></div>`).join('')}
+        </div>
+      </div>
+
+      <div class="rs">
+        <div class="paid-tag">Full report only</div>
+        <div class="rs-title">Most Likely Failure Scenario</div>
+        <div style="filter:blur(5px);background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius);padding:20px">
+          <div style="height:12px;background:var(--lgray);border-radius:4px;margin-bottom:10px;width:60%"></div>
+          <div style="height:10px;background:var(--lgray);border-radius:4px;margin-bottom:8px"></div>
+          <div style="height:10px;background:var(--lgray);border-radius:4px;width:80%"></div>
+        </div>
+      </div>
+
+      <div class="rs">
+        <div class="paid-tag">Full report only</div>
+        <div class="rs-title">Financial Exposure — Cost of Delay</div>
+        <div style="filter:blur(5px);background:var(--navy);border-radius:var(--radius);padding:20px;color:white;display:flex;justify-content:space-between;align-items:center">
+          <span style="font-size:.85rem;font-weight:700">TOTAL ESTIMATED EXPOSURE</span>
+          <span style="font-size:1.6rem;font-weight:700;color:var(--red)">\u00a3??.?M</span>
+        </div>
+      </div>
+
+      <div class="rs">
+        <div class="paid-tag">Full report only</div>
+        <div class="rs-title">Executive Talking Points</div>
+        <div style="filter:blur(5px)">
+          ${['Opening','Primary finding','Financial case','The ask'].map(l=>`<div style="background:var(--lgray);border-left:3px solid var(--navy);padding:14px 18px;margin-bottom:10px;border-radius:0 4px 4px 0"><div style="height:10px;background:#ccc;border-radius:4px;width:40%;margin-bottom:8px"></div><div style="height:8px;background:#ddd;border-radius:4px;margin-bottom:6px"></div><div style="height:8px;background:#ddd;border-radius:4px;width:70%"></div></div>`).join('')}
+        </div>
+      </div>
+
+    </div>`;
+
+    document.getElementById('report-body').innerHTML = freeHtml;
+    requestAnimationFrame(()=>{
+      document.querySelectorAll('.pattern-fill,.risk-bar-fill').forEach(el=>{
+        const w=el.style.width; el.style.width='0';
+        requestAnimationFrame(()=>{ el.style.width=w; });
+      });
+    });
+    return;
+  }
+
+  // ════════════════════════════════════════════════════════════════
+  // PAID REPORT (full experience)
+  // ════════════════════════════════════════════════════════════════
+  const html = `
+
+  <div style="background:var(--green);color:white;border-radius:var(--radius);padding:12px 20px;margin-bottom:32px;display:flex;align-items:center;gap:12px">
+    <span style="font-size:1.1rem">\u2713</span>
+    <div>
+      <div style="font-size:.78rem;font-weight:700;letter-spacing:.08em">FULL REPORT UNLOCKED</div>
+      <div style="font-size:.8rem;opacity:.85">All sections, financial exposure, talking points, recovery plan and Monday morning actions.</div>
+    </div>
+  </div>
+
+  ${section('Prepared for: '+role, 'What This Means For You',
+    `<div class="for-you-box"><p>This report contains findings that will be uncomfortable to read. That is intentional.
+    ${p} scored <strong>${Math.round(sc.health.overall)}/100</strong> on overall behavioral health \u2014
+    placing it in the <strong>bottom quartile</strong> of programs at this delivery stage.
+    The dominant failure driver is <strong>${pri.name}</strong>, scoring ${Math.round(pri.score)}/100 at ${pri.band} level.
+    This pattern does not resolve on its own \u2014 it worsens as go-live pressure increases.
+    The financial exposure from inaction is calculated on this page. The recovery plan below
+    tells you exactly what to do, starting Monday.</p></div>`
+  )}
+
+  ${section('Overview', 'Executive Summary',
+    `<p class="summary-text">${execSummary}</p>`
+  )}
+
+  ${section('Scores', 'PMOS Pattern Scores <span style="font-size:.8rem;font-weight:400;color:#888">(0\u2013100 \u00b7 higher = more dysfunction)</span>',
+    sc.scores4.map(s=>patternBar(s.name,s.score,s.band,
+      s.name==='Hero Dependency\u2122'?'The program\u2019s resilience depends entirely on 1\u20132 individuals.':
+      s.name==='Death By Governance\u2122'?'Approval layers and meetings are consuming delivery capacity.':
+      s.name==='Nobody Wants To Decide\u2122'?'Decisions circulate in forums; no single owner closes them.':
+      'Old ways of working persist beneath the new process.'
+    )).join('') +
+    patternBar('Builder Culture\u2122  (high = good)', sc.bc, sc.band_bc,
+      sc.bc<50?'Problem-solving culture is weak. Issues are discussed more than resolved.':
+      sc.bc<75?'Builder behaviors exist but are inconsistent. Reinforce before they erode.':
+      'Genuine builder culture present \u2014 protect against complacency.', true)
+  )}
+
+  ${section('Health', 'PMOS Health Index',
+    `<div class="health-grid">
+      ${[['gov','Governance'],['dv','Decision Velocity'],['adopt','Adoption'],['lead','Leadership'],['exec','Execution']].map(([k,n])=>{
+        const v=Math.round(sc.health[k]);
+        const c=bandCol(v<25?'CRITICAL':v<50?'ELEVATED':v<75?'WATCH':'HEALTHY');
+        return `<div class="health-cell"><div class="health-val" style="color:${c}">${v}</div><div class="health-name">${n}</div></div>`;
+      }).join('')}
+    </div>
+    <div class="health-overall">
+      <div><div class="health-overall-label">Overall PMOS Health</div><div class="health-overall-sub">Bottom quartile of programs at this delivery stage</div></div>
+      <div class="health-overall-val">${Math.round(sc.health.overall*10)/10} / 100</div>
+    </div>`
+  )}
+
+  ${section('Diagnosis', `Primary \u2014 ${pri.name} <span style="font-size:.8rem;color:#888">${Math.round(pri.score)}/100</span>`,
+    `<div class="diag-block">
+      <div class="diag-rank">Primary failure driver</div>
+      <div class="diag-score-pill">${`<span class="pattern-badge" style="background:${bandCol(pri.band)}22;color:${bandCol(pri.band)}">${pri.band}</span>`}</div>
+      <div class="diag-text">${pLib.block}</div>
+    </div>
+    <div class="diag-block">
+      <div class="diag-rank">Secondary pattern</div>
+      <div class="diag-name">${sec.name} \u2014 ${Math.round(sec.score)}/100</div>
+      <div class="diag-score-pill">${`<span class="pattern-badge" style="background:${bandCol(sec.band)}22;color:${bandCol(sec.band)}">${sec.band}</span>`}</div>
+      <div class="diag-text">${sLib.block}</div>
+    </div>
+    <div class="diag-block">
+      <div class="diag-rank">Tertiary pattern</div>
+      <div class="diag-name">${ter.name} \u2014 ${Math.round(ter.score)}/100</div>
+      <div class="diag-score-pill">${`<span class="pattern-badge" style="background:${bandCol(ter.band)}22;color:${bandCol(ter.band)}">${ter.band}</span>`}</div>
+      <div class="diag-text">${tLib.block}</div>
+    </div>`
+  )}
+
+  ${section('Scenario', 'Most Likely Failure Scenario \u2014 If Nothing Changes',
+    `<div class="failure-box">
+      <div class="failure-header">Based on this pattern combination, here is the sequence most likely to unfold:</div>
+      <div class="failure-timeline">
+        ${failScenario.map(f=>`<div class="failure-row"><div class="failure-period">${f.period}</div><div class="failure-desc">${f.desc}</div></div>`).join('')}
+      </div>
+      <div class="failure-warning">This scenario is not inevitable. It is the default outcome if the interventions below are not run.</div>
+    </div>`
+  )}
+
+  ${section('Risk', 'Risk Forecast <span style="font-size:.8rem;font-weight:400;color:#888">(weighted from pattern scores)</span>',
+    [['Go-Live Delay',sc.risk.golive,RISK_WHY.golive],
+     ['Budget Overrun',sc.risk.budget,RISK_WHY.budget],
+     ['Adoption Failure',sc.risk.adoption,RISK_WHY.adoption],
+     ['Executive Escalation',sc.risk.escalation,RISK_WHY.escalation],
+     ['Hero Burnout',sc.risk.burnout,RISK_WHY.burnout],
+    ].map(([n,r,w])=>riskRow(n,r.v,r.b,w)).join('')
+  )}
+
+  ${section('Financial', `Cost of Delay \u2014 Program Budget: approx. ${fmt(state.budgetM*1000000)}`,
+    `<div class="cod-table">
+      ${[
+        ['Weekly program run-rate','Staff, vendor, infrastructure \u2014 every week of delay burns this',sc.cod.weekly],
+        [`Estimated delay: ${sc.cod.delayWks} weeks`,'Conservative estimate based on comparable program profiles',sc.cod.delayCost],
+        ['Recovery / remediation costs','External recovery support, rework, re-testing',sc.cod.remediation],
+        ['Adoption failure \u2014 benefits not realised','25% of programme value at risk if adoption does not recover',sc.cod.adoptLoss],
+      ].map(([l,n,v])=>`<div class="cod-row"><div><div class="cod-label">${l}</div><div class="cod-note">${n}</div></div><div class="cod-value">${fmt(v)}</div></div>`).join('')}
+    </div>
+    <div class="cod-total"><div class="cod-total-label">TOTAL ESTIMATED EXPOSURE IF NOTHING CHANGES</div><div class="cod-total-val">${fmt(totalExp)}</div></div>
+    <div class="cod-disclaimer">Figures are modelled estimates based on program scale and pattern severity \u2014 not audited financials.</div>
+    <div style="margin-top:12px;background:rgba(26,26,46,.05);border-left:3px solid var(--red);padding:12px 16px;border-radius:0 4px 4px 0;font-size:.82rem;color:var(--navy);line-height:1.6"><strong>Context:</strong> A typical PMOS recovery intervention costs less than one week of your current delay exposure. The full Recovery Toolkit \u2014 10 step-by-step playbooks \u2014 is available for a fraction of a single day of external consulting.</div>`
+  )}
+
+  ${section('Steering Committee', 'Executive Talking Points \u2014 Next Steering Committee',
+    `<p style="font-size:.8rem;color:#888;font-style:italic;margin-bottom:16px">These talking points are written to be used directly. Do not soften them.</p>`+
+    talkingPoints.map(tp=>`<div class="tp-item"><div class="tp-label">${tp.label}</div><div class="tp-quote">${tp.quote}</div></div>`).join('')
+  )}
+
+  ${section('Recovery', '30-Day Recovery Plan \u2014 Start Monday',
+    weekPlan.map(w=>`<div class="week-block" style="margin-bottom:12px">
+      <div class="week-label" style="background:${w.color}"><strong>${w.label}</strong><span>${w.sublabel}</span></div>
+      <div class="week-items">${w.items.map(item=>`<div class="week-item">${item}</div>`).join('')}</div>
+    </div>`).join('')
+  )}
+
+  ${section('Immediate', 'Top 3 Actions To Take Monday Morning',
+    `<div class="monday-grid">
+      ${mondayActions.map((a,i)=>`<div class="monday-item">
+        <div class="monday-num">${i+1}</div>
+        <div><div class="monday-action">${a.action}</div><div class="monday-detail">${a.detail}</div></div>
+      </div>`).join('')}
+    </div>`
+  )}
+
+  ${section('Prescription', 'Diagnosis-Matched Interventions',
+    `<div style="background:var(--white);border:1px solid var(--lgray);border-radius:var(--radius);overflow:hidden">
+      ${[['LEAD WITH',pLib.intv,'Weeks 1\u20134','#E8505B'],['THEN',sLib.intv,'Weeks 3\u20136','#E07B39'],['CULTURE',bcLib.intv,'Ongoing','#2E9E5B'],
+      ].map(([tag,name,timing,col])=>`<div class="intv-row">
+        <span class="intv-tag" style="background:${col}22;color:${col}">${tag}</span>
+        <span class="intv-name">${name}</span>
+        <span class="intv-timing">${timing}</span>
+      </div>`).join('')}
+    </div>
+    <p style="font-size:.78rem;color:var(--mgray);margin-top:10px;font-style:italic">Full step-by-step playbooks for every intervention are in the PMOS\u2122 Recovery Toolkit.</p>`
+  )}
+
+  ${section('', 'PMOS\u2122 Methodology Note',
+    `<div class="closing-note">
+      <div class="closing-note-title">How these scores are produced</div>
+      <p>The PMOS diagnostic engine scores five behavioral patterns using a validated weighted model built from the analysis of ERP and transformation program failure patterns. Each pattern score is computed directly from your responses \u2014 not inferred or estimated. The risk forecasts are weighted composites of those scores, calibrated to the failure modes most commonly associated with each pattern combination. The cost-of-delay figures are modelled from your program budget and delay risk profile. They are directional, not audited \u2014 but in our experience they consistently underestimate the true cost of inaction rather than overstate it.</p>
+    </div>`
+  )}
+
+  <div style="margin:40px 0;background:var(--navy);border-radius:10px;padding:36px 32px;text-align:center">
+    <div style="font-size:.7rem;font-weight:700;letter-spacing:.16em;color:var(--red);text-transform:uppercase;margin-bottom:12px">Your next step</div>
+    <h3 style="font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">The diagnosis is complete.<br>Now run the recovery.</h3>
+    <p style="font-size:.88rem;color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 24px;line-height:1.7">The PMOS\u2122 Recovery Toolkit contains the full step-by-step playbook for every intervention recommended in this report \u2014 including the facilitation guide for a 90-minute team diagnostic session and the Go-Live Readiness checklist for use 6\u20138 weeks before cutover.</p>
+    <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
+      <a href="https://YOUR-GUMROAD-LINK" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--red);color:white;font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:6px;text-decoration:none;letter-spacing:.02em">Get the Recovery Toolkit \u2192</a>
+      <button onclick="window.print()" style="background:rgba(255,255,255,.1);color:white;font-weight:600;font-size:.9rem;padding:14px 28px;border-radius:6px;letter-spacing:.02em;cursor:pointer;border:none">Save this report as PDF</button>
+    </div>
+    <p style="margin-top:20px;font-size:.72rem;color:rgba(255,255,255,.3)">PMOS\u2122 \u00b7 Project Management Operating System \u00b7 Behavioral Diagnosis for ERP &amp; Transformation Programs</p>
+  </div>
+
+  <div style="text-align:center;padding-bottom:20px">
+    <button onclick="showScreen('s-landing');resetState()" style="font-size:.78rem;color:var(--mgray);text-decoration:underline;cursor:pointer;background:none;border:none">Run a new diagnostic</button>
+  </div>`;
+
+  document.getElementById('report-body').innerHTML = html;
+  requestAnimationFrame(()=>{
+    document.querySelectorAll('.pattern-fill,.risk-bar-fill').forEach(el=>{
+      const w=el.style.width; el.style.width='0';
+      requestAnimationFrame(()=>{ el.style.width=w; });
+    });
+  });
+}
+
+function unlockReport(){
+  // In production: redirect to Stripe/Gumroad checkout
+  // For demo: simulate instant unlock
+  state.isPaid = true;
+  buildReport();
+  // Scroll the report screen back to top
+  const rb = document.getElementById('report-body');
+  if(rb) rb.scrollIntoView({behavior:'instant'});
+  document.getElementById('s-report').scrollTop = 0;
+  window.scrollTo({top: document.getElementById('s-report').offsetTop, behavior:'instant'});
+}
+
+function resetState(){
+  state = { isPaid:false, program:'', role:'', budgetM:15, answers:[null,null,null,null,null,null,null], currentQ:0, scores:null };
+  document.getElementById('f-program').value='';
+  document.getElementById('f-role').value='';
+  document.getElementById('f-budget').value='';
+  document.querySelectorAll('.scoring-step').forEach(s=>s.classList.remove('done','active-step'));
+}
+
+function bandColorBC(s){
+  if(s>=75) return '#2E9E5B';
+  if(s>=50) return '#E8A33D';
+  return '#E8505B';
+}
+</script>
+</body>
+</html> 
