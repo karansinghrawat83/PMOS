@@ -533,6 +533,136 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
   .report-body{padding:20px 12px 48px}
   .health-grid{grid-template-columns:repeat(2,1fr)}
 }
+/* ═══ PMOS BETA PLATFORM LAYER STYLES ═══ */
+.report-body.pf-mode{max-width:100%;padding:0;margin:0;}
+.pf-banner{background:#6B5B95;color:#fff;text-align:center;font-size:13px;font-weight:600;padding:8px 16px;letter-spacing:.3px;}
+.pf-nav{background:#1A1A2E;display:flex;align-items:center;gap:24px;padding:0 24px;position:sticky;top:0;z-index:20;flex-wrap:wrap;}
+.pf-nav-brand{color:#fff;font-weight:700;font-size:15px;padding:16px 0;letter-spacing:.5px;}
+.pf-nav-tabs{display:flex;gap:4px;flex-wrap:wrap;}
+.pf-tab{background:none;border:none;color:#9A9AAE;font-size:13.5px;font-weight:600;padding:18px 14px;cursor:pointer;border-bottom:3px solid transparent;transition:.15s;font-family:inherit;}
+.pf-tab:hover{color:#fff;}
+.pf-tab.active{color:#fff;border-bottom-color:#E8505B;}
+.pf-tab-fb{margin-left:auto;color:#E8A33D;}
+.pf-tab-fb.active{color:#E8A33D;border-bottom-color:#E8A33D;}
+.pf-view{max-width:1040px;margin:0 auto;padding:36px 28px 80px;}
+.pf-head h1{font-size:28px;color:#1A1A2E;margin:0 0 4px;font-weight:800;}
+.pf-sub{color:#8A8A9A;font-size:14px;margin:0 0 24px;}
+.report-body-inner{max-width:820px;margin:0 auto;}
+
+/* KPI gauges */
+.pf-kpi-row{display:flex;gap:20px;justify-content:center;flex-wrap:wrap;margin-bottom:28px;}
+.pf-gauge{background:#fff;border:1px solid #ECECF2;border-radius:14px;padding:18px 28px;text-align:center;box-shadow:0 1px 3px rgba(0,0,0,.04);min-width:160px;}
+.pf-gauge-svg{width:120px;height:70px;}
+.pf-gauge-val{font-size:30px;font-weight:800;margin-top:-6px;}
+.pf-gauge-lbl{font-size:12px;color:#8A8A9A;font-weight:600;margin-top:2px;}
+
+/* dashboard cards */
+.pf-card-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:26px;}
+.pf-card{background:#fff;border:1px solid #ECECF2;border-radius:12px;padding:16px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.pf-card-wide{grid-column:span 4;}
+.pf-card-k{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#8A8A9A;font-weight:700;margin-bottom:6px;}
+.pf-card-v{font-size:17px;font-weight:800;color:#1A1A2E;line-height:1.2;}
+.pf-card-x{font-size:12px;color:#8A8A9A;margin-top:3px;}
+.pf-exec{background:#F7F7FB;border-left:4px solid #1A1A2E;border-radius:8px;padding:18px 20px;margin-bottom:24px;}
+.pf-exec-h{font-weight:800;color:#1A1A2E;margin-bottom:6px;font-size:14px;}
+.pf-exec p{margin:0;color:#333;font-size:14px;line-height:1.6;}
+.pf-next{display:flex;gap:12px;flex-wrap:wrap;}
+.pf-cta{background:#E8505B;color:#fff;border:none;border-radius:9px;padding:13px 22px;font-size:14px;font-weight:700;cursor:pointer;font-family:inherit;text-decoration:none;display:inline-block;}
+.pf-cta:hover{background:#d8404b;}
+.pf-cta-ghost{background:#fff;color:#1A1A2E;border:1.5px solid #D5D5DD;}
+
+/* journey */
+.pf-journey{display:flex;flex-direction:column;gap:14px;}
+.pf-phase{display:flex;background:#fff;border:1px solid #ECECF2;border-radius:12px;overflow:hidden;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.pf-phase-bar{width:8px;flex-shrink:0;}
+.pf-phase-body{padding:16px 20px;flex:1;}
+.pf-phase-h{display:flex;align-items:baseline;gap:12px;margin-bottom:8px;}
+.pf-phase-h span{font-weight:800;color:#1A1A2E;font-size:15px;}
+.pf-phase-h em{color:#8A8A9A;font-size:12px;font-style:normal;text-transform:uppercase;letter-spacing:.5px;}
+.pf-phase-body ul{margin:0;padding-left:18px;}
+.pf-phase-body li{color:#333;font-size:13.5px;line-height:1.6;margin-bottom:4px;}
+
+/* cockpit */
+.pf-ck-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.pf-ck-block{background:#fff;border:1px solid #ECECF2;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.pf-ck-wide{grid-column:span 2;}
+.pf-ck-block h3{margin:0 0 10px;font-size:15px;color:#1A1A2E;font-weight:800;}
+.pf-ck-block h4{margin:0 0 6px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8A8A9A;}
+.pf-ck-block p{margin:0 0 8px;color:#333;font-size:13.5px;line-height:1.6;}
+.pf-ck-cols{display:flex;gap:28px;flex-wrap:wrap;}
+.pf-ck-cols>div{flex:1;min-width:220px;}
+.pf-ck-cols ul{margin:0;padding-left:18px;}
+.pf-ck-cols li{color:#333;font-size:13px;line-height:1.7;}
+
+/* assets */
+.pf-asset-grid{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+.pf-asset{display:flex;gap:16px;background:#fff;border:1px solid #ECECF2;border-radius:12px;padding:20px;box-shadow:0 1px 3px rgba(0,0,0,.04);}
+.pf-asset-ico{font-size:32px;color:#6B5B95;line-height:1;}
+.pf-asset-type{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#8A8A9A;font-weight:700;}
+.pf-asset-title{font-size:16px;font-weight:800;color:#1A1A2E;margin:2px 0 6px;}
+.pf-asset-desc{font-size:13px;color:#555;line-height:1.55;margin-bottom:10px;}
+.pf-asset-cta{color:#E8505B;font-weight:700;font-size:13.5px;text-decoration:none;}
+.pf-asset-note{text-align:center;color:#8A8A9A;font-size:12.5px;margin-top:18px;}
+
+/* feedback */
+.pf-fb{background:#fff;border:1px solid #ECECF2;border-radius:12px;padding:28px;text-align:center;max-width:620px;margin:0 auto;}
+.pf-fb p{color:#333;font-size:14.5px;line-height:1.6;margin:0 0 14px;}
+.pf-fb .pf-cta{margin:8px 0 16px;}
+.pf-fb-note{color:#8A8A9A;font-size:12.5px;font-style:italic;}
+.pf-fb-microbox{background:#F2EFF7;border-radius:8px;padding:12px 16px;margin:14px 0;font-size:13px;color:#333;text-align:left;}
+.pf-fb-microbox ul{margin:6px 0 0;padding-left:18px;}
+.pf-fb-microbox li{margin:2px 0;}
+
+@media(max-width:780px){
+  .pf-card-grid{grid-template-columns:1fr 1fr;}
+  .pf-card-wide{grid-column:span 2;}
+  .pf-ck-grid,.pf-asset-grid{grid-template-columns:1fr;}
+  .pf-ck-wide{grid-column:span 1;}
+  .pf-nav{gap:8px;}
+  .pf-nav-brand{padding:12px 0;}
+  .pf-tab{padding:12px 8px;font-size:12.5px;}
+}
+
+/* ═══ PMOS ASSET PAGES (Option C) ═══ */
+.pf-asset-click{cursor:pointer;transition:.15s;}
+.pf-asset-click:hover{border-color:#6B5B95;box-shadow:0 4px 14px rgba(107,91,149,.14);transform:translateY(-2px);}
+.pf-asset-cta{color:#6B5B95;font-weight:700;font-size:13.5px;}
+
+.pf-ap{margin-top:28px;background:#fff;border:1px solid #ECECF2;border-radius:14px;padding:26px;box-shadow:0 2px 10px rgba(0,0,0,.05);}
+.pf-ap-back{background:none;border:none;color:#6B5B95;font-weight:700;font-size:13px;cursor:pointer;padding:0 0 14px;font-family:inherit;}
+.pf-ap-head{display:flex;align-items:center;gap:16px;margin-bottom:14px;}
+.pf-ap-ico{font-size:34px;color:#6B5B95;line-height:1;}
+.pf-ap-type{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#8A8A9A;font-weight:700;}
+.pf-ap-head h2{margin:2px 0 0;font-size:22px;color:#1A1A2E;font-weight:800;}
+.pf-ap-over{color:#333;font-size:14.5px;line-height:1.65;margin:0 0 20px;}
+.pf-ap-cols{display:grid;grid-template-columns:1fr 1.4fr;gap:24px;}
+.pf-ap-contents h4,.pf-ap-preview h4{margin:0 0 10px;font-size:12px;text-transform:uppercase;letter-spacing:.5px;color:#8A8A9A;font-weight:800;}
+.pf-ap-contents ul{margin:0 0 16px;padding-left:18px;}
+.pf-ap-contents li{font-size:13.5px;color:#333;line-height:1.65;margin-bottom:6px;}
+.pf-ap-open{display:inline-block;margin-top:4px;}
+
+.pf-pdf-wrap{border:1px solid #E0E0EA;border-radius:10px;overflow:hidden;background:#F7F7FB;}
+.pf-pdf{width:100%;height:560px;border:none;display:block;}
+.pf-pdf-fallback{font-size:12px;color:#8A8A9A;padding:8px 12px;border-top:1px solid #E0E0EA;background:#fff;}
+.pf-pdf-fallback a{color:#6B5B95;font-weight:600;}
+
+.pf-ap-shots{display:flex;gap:14px;margin:0 0 22px;flex-wrap:wrap;}
+.pf-ap-shots img{flex:1;min-width:240px;max-width:100%;border:1px solid #E0E0EA;border-radius:10px;box-shadow:0 2px 8px rgba(0,0,0,.06);}
+.pf-ap-shots-empty{background:#F7F7FB;border:1px dashed #D5D5DD;border-radius:10px;padding:24px;text-align:center;color:#8A8A9A;font-size:13px;margin-bottom:22px;}
+
+/* micro-feedback */
+.pf-micro{margin-top:24px;padding-top:18px;border-top:1px solid #ECECF2;display:flex;align-items:center;gap:10px;flex-wrap:wrap;}
+.pf-micro-q{font-size:13.5px;font-weight:700;color:#1A1A2E;margin-right:4px;}
+.pf-micro-btn{background:#F0F0F4;border:1.5px solid transparent;border-radius:20px;padding:7px 14px;font-size:13px;cursor:pointer;font-family:inherit;font-weight:600;color:#333;transition:.12s;}
+.pf-micro-btn:hover{background:#E6E6EE;}
+.pf-micro-btn.sel{background:#6B5B95;color:#fff;border-color:#6B5B95;}
+.pf-micro-thanks{font-size:12.5px;color:#2E9E5B;font-weight:700;}
+
+@media(max-width:780px){
+  .pf-ap-cols{grid-template-columns:1fr;}
+  .pf-pdf{height:420px;}
+}
+
 </style>
 
 <!-- Inline favicon — no external file needed -->
@@ -723,6 +853,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
 /* ════════════════════════════════════════════════════════════
    ENGINE DATA
 ════════════════════════════════════════════════════════════ */
+const REVIEWER_MODE = true;  // Beta: full platform, no pricing/checkout
 const QUESTIONS = [
   {
     code:'Q1', theme:'Governance',
@@ -873,6 +1004,8 @@ const PRICES = { report:49, toolkit:99, operator:299 };
 let state = {
   program:'', role:'', industry:'', budgetM:15,
   isPaid: false,
+  // PMOS Beta: reviewer mode is the default experience
+
   currency: 'USD',
   answers: [null,null,null,null,null,null,null], // 0-indexed
   currentQ: 0,
@@ -1182,7 +1315,7 @@ function runScoringTransition(){
     } else {
       steps[steps.length-1].classList.remove('active-step');
       steps[steps.length-1].classList.add('done');
-      setTimeout(()=>{ buildReport(); showScreen('s-report'); }, 400);
+      setTimeout(()=>{ if(typeof REVIEWER_MODE!=='undefined' && REVIEWER_MODE){ buildPlatform(); } else { buildReport(); } showScreen('s-report'); }, 400);
     }
   }
   tick();
@@ -1415,7 +1548,7 @@ function buildReport(){
   // ════════════════════════════════════════════════════════════════
   // FREE REPORT
   // ════════════════════════════════════════════════════════════════
-  if(!state.isPaid){
+  if(!state.isPaid && !REVIEWER_MODE){
     const freeHtml = `
 
     <!-- FREE: DASHBOARD (curiosity engine) -->
@@ -1558,14 +1691,10 @@ function buildReport(){
           ].map(i=>`<div class="unlock-item">${i}</div>`).join('')}
         </div>
         <div style="background:rgba(46,158,91,.08);border:1px solid rgba(46,158,91,.25);border-radius:8px;padding:12px 16px;margin-bottom:16px;text-align:left">
-          <div style="font-size:.74rem;color:var(--navy);line-height:1.6"><strong>ROI:</strong> your modelled delay exposure is <strong style="color:var(--red)">${fmt(sc.cod.total)}</strong>. Complete PMOS Report Included.</div>
+          <div style="font-size:.74rem;color:var(--navy);line-height:1.6"><strong>ROI:</strong> your modelled delay exposure is <strong style="color:var(--red)">${fmt(sc.cod.total)}</strong>. The full report costs <strong>${priceLabel('report')}</strong> — less than ${(sc.cod.total/PRICES.report > 1000 ? 'one-thousandth' : 'a fraction')} of what one week of delay will cost you.</div>
         </div>
-        <button class="unlock-btn" onclick="unlockReport()">
-Open Complete PMOS Package
-</button>
-        <div class="unlock-price">
-Beta Review Version – all PMOS assets included.
-</div>
+        <button class="unlock-btn" onclick="unlockReport()">Unlock the full report — ${priceLabel('report')}</button>
+        <div class="unlock-price">Instant access — your full report and Recovery Toolkit open immediately.</div>
       </div>
     </div>
 
@@ -1662,14 +1791,61 @@ Beta Review Version – all PMOS assets included.
   // ════════════════════════════════════════════════════════════════
   // PAID REPORT (full experience)
   // ════════════════════════════════════════════════════════════════
+  // ── Recovery Package Dashboard data (from live scores) ──
+  const recoveryReadiness = Math.max(0, Math.min(100, Math.round(100 - sc.health.overall*0.55 - pri.score*0.25)));
+  const goLive = sc.risk && sc.risk.golive ? (100 - sc.risk.golive.v) : Math.round(sc.health.overall*0.7);
+  const priorityMap = {CRITICAL:'P1 \u2014 Act this week', ELEVATED:'P2 \u2014 Act this month', WATCH:'P3 \u2014 Monitor', HEALTHY:'P4 \u2014 Sustain'};
+  const riskLevelMap = {CRITICAL:'High', ELEVATED:'Elevated', WATCH:'Moderate', HEALTHY:'Low'};
+  const classification = sc.stable ? 'Stable \u2014 Builder-leaning' :
+    (sc.scores4.filter(s=>s.band==='CRITICAL').length>=2 ? 'Recovery Required \u2014 Multi-pattern' : 'At Risk \u2014 Single dominant pattern');
+  function dcard(label,value,sub,color){
+    return `<div class="rpd-card">
+      <div class="rpd-label">${label}</div>
+      <div class="rpd-value" style="color:${color||'var(--ink)'}">${value}</div>
+      <div class="rpd-sub">${sub||''}</div>
+    </div>`;
+  }
+  const healthCol = sc.health.overall<25?'var(--green)':sc.health.overall<50?'var(--amber)':sc.health.overall<75?'var(--orange)':'var(--red)';
+  const priCol = bandCol(pri.band);
+
   const html = `
 
-  <div style="background:var(--green);color:white;border-radius:var(--radius);padding:12px 20px;margin-bottom:32px;display:flex;align-items:center;gap:12px">
-    <span style="font-size:1.1rem">\u2713</span>
+  <div class="beta-ribbon">
+    <span class="beta-dot"></span>
     <div>
-      <div style="font-size:.78rem;font-weight:700;letter-spacing:.08em">FULL REPORT UNLOCKED</div>
-      <div style="font-size:.8rem;opacity:.85">All sections, financial exposure, talking points, recovery plan and Monday morning actions.</div>
+      <div class="beta-ribbon-title">BETA REVIEW VERSION \u2014 FULL PMOS EXPERIENCE ENABLED</div>
+      <div class="beta-ribbon-sub">You are seeing the complete recovery platform. Explore freely, then share your feedback at the end.</div>
     </div>
+  </div>
+
+  <div class="rpd-hero">
+    <div class="rpd-hero-eyebrow">RECOVERY PACKAGE \u00b7 ${p}</div>
+    <div class="rpd-hero-title">Your PMOS Recovery Dashboard</div>
+    <div class="rpd-hero-sub">${role} \u00b7 Diagnosis complete \u00b7 ${sc.scores4.filter(s=>s.band==='CRITICAL').length} critical \u00b7 ${sc.scores4.filter(s=>s.band==='ELEVATED').length} elevated patterns</div>
+  </div>
+
+  <div class="rpd-grid">
+    ${dcard('PMOS Health Score', Math.round(sc.health.overall)+'<span class=\'rpd-unit\'>/100</span>', sc.health.overall<25?'Healthy band':sc.health.overall<50?'Watch band':sc.health.overall<75?'Elevated band':'Critical band', healthCol)}
+    ${dcard('Recovery Readiness', recoveryReadiness+'<span class=\'rpd-unit\'>%</span>', 'Capacity to execute recovery', recoveryReadiness>60?'var(--green)':recoveryReadiness>35?'var(--amber)':'var(--red)')}
+    ${dcard('Go-Live Readiness', goLive+'<span class=\'rpd-unit\'>%</span>', 'Behavioural readiness for cutover', goLive>60?'var(--green)':goLive>35?'var(--amber)':'var(--red)')}
+    ${dcard('Dominant Pattern', pri.name.replace('\u2122',''), 'Primary failure driver', priCol)}
+    ${dcard('Pattern Severity', pri.band, Math.round(pri.score)+'/100', priCol)}
+    ${dcard('Recovery Priority', (priorityMap[pri.band]||'P3').split('\u2014')[0], (priorityMap[pri.band]||'').split('\u2014')[1]||'', priCol)}
+    ${dcard('Recovery Risk Level', riskLevelMap[pri.band]||'Moderate', 'If no action is taken', priCol)}
+    ${dcard('Project Classification', classification.split('\u2014')[0], classification.split('\u2014')[1]||'', 'var(--ink)')}
+    ${dcard('Secondary Pattern', sec.name.replace('\u2122',''), sec.band+' \u00b7 '+Math.round(sec.score)+'/100', bandCol(sec.band))}
+  </div>
+
+  <div class="rpd-execsum">
+    <div class="rpd-execsum-label">EXECUTIVE SUMMARY</div>
+    <p>${execSummary}</p>
+  </div>
+
+  <div class="platform-nav">
+    <button class="pnav-btn" onclick="scrollToSection('cockpit-anchor')">\u25B8 Executive Cockpit</button>
+    <button class="pnav-btn" onclick="scrollToSection('journey-anchor')">\u25B8 Recovery Journey</button>
+    <button class="pnav-btn" onclick="scrollToSection('assets-anchor')">\u25B8 Integrated Assets</button>
+    <button class="pnav-btn" onclick="scrollToSection('feedback-anchor')">\u25B8 Give Feedback</button>
   </div>
 
   ${section('Prepared for: '+role, 'What This Means For You',
@@ -1845,7 +2021,7 @@ Beta Review Version – all PMOS assets included.
     <h3 style="font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">The diagnosis is complete.<br>Now run the recovery.</h3>
     <p style="font-size:.88rem;color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 24px;line-height:1.7">The PMOS\u2122 Recovery Toolkit contains the full step-by-step playbook for every intervention recommended in this report \u2014 including the facilitation guide for a 90-minute team diagnostic session and the Go-Live Readiness checklist for use 6\u20138 weeks before cutover.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://drive.google.com/drive/folders/1gVsy2jTOkHPZClqd7GadvbsmfgWbJUPj?usp=drive_link"_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--red);color:white;font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:6px;text-decoration:none;letter-spacing:.02em">Get the Recovery Toolkit \u2192</a>
+      <a href="https://YOUR-GUMROAD-LINK" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--red);color:white;font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:6px;text-decoration:none;letter-spacing:.02em">Get the Recovery Toolkit \u2192</a>
       <button onclick="window.print()" style="background:rgba(255,255,255,.1);color:white;font-weight:600;font-size:.9rem;padding:14px 28px;border-radius:6px;letter-spacing:.02em;cursor:pointer;border:none">Save this report as PDF</button>
     </div>
     <p style="margin-top:20px;font-size:.72rem;color:rgba(255,255,255,.3)">PMOS\u2122 \u00b7 Project Management Operating System \u00b7 Behavioral Diagnosis for ERP &amp; Transformation Programs</p>
@@ -1921,6 +2097,454 @@ function bandColorBC(s){
   if(s>=50) return '#E8A33D';
   return '#E8505B';
 }
+
+/* ════════════════════════════════════════════════════════════════════
+   PMOS BETA — REVIEWER MODE PLATFORM LAYER
+   Turns the post-assessment experience into a SaaS-style operating system.
+   Default-on. Suppresses pricing/paywall. Additive — engine untouched.
+   ════════════════════════════════════════════════════════════════════ */
+
+// Asset cards (Phase 6). Replace the href placeholders with your real links.
+
+// Pattern → journey theme (Phase 4)
+const JOURNEY_THEME = {
+  'Hero Dependency\u2122':      { label:'Hero Recovery Journey',        aim:'Break the single-point-of-failure before cutover.' },
+  'Nobody Wants To Decide\u2122':{ label:'Decision Velocity Journey',    aim:'Put one owner and a deadline on every open decision.' },
+  'Death By Governance\u2122':  { label:'Governance Recovery Journey',   aim:'Cut process to release the capacity to deliver.' },
+  'Silent Resistance\u2122':    { label:'Adoption Recovery Journey',     aim:'Convert quiet resistance into real adoption.' },
+  'Builder Culture\u2122':      { label:'Sustainment & Scale Journey',   aim:'Protect and grow the behaviours that are working.' },
+};
+
+function classifyProgram(sc){
+  if(sc.stable) return { cls:'Stable / Builder-leaning', risk:'Low', col:'#2E9E5B' };
+  const crit = sc.scores4.filter(s=>s.band==='CRITICAL').length;
+  if(crit>=3) return { cls:'Critical Recovery', risk:'Severe', col:'#E8505B' };
+  if(crit>=1) return { cls:'Active Recovery', risk:'Elevated', col:'#E07B39' };
+  return { cls:'Watch', risk:'Moderate', col:'#E8A33D' };
+}
+
+function recoveryReadiness(sc){
+  // inverse of dominant severity, blended with builder culture
+  const health = sc.health.overall;            // 0-100 (higher=healthier)
+  const bc = sc.bc;             // builder culture displayed
+  return Math.round(Math.min(100, Math.max(0, (health*0.6 + bc*0.4))));
+}
+
+function buildPlatform(){
+  const sc = state.scores;
+  if(!sc) return;
+  state.isPaid = true; // reviewer mode unlocks everything
+  buildReport();        // render the full report into #report-body (now unlocked)
+
+  const p = state.program || 'Your Program';
+  const cls = classifyProgram(sc);
+  const theme = JOURNEY_THEME[sc.primary.name] || JOURNEY_THEME['Hero Dependency\u2122'];
+  const readiness = recoveryReadiness(sc);
+  const glr = Math.max(0, Math.min(100, Math.round(sc.health.overall*0.9 + 8)));
+
+  // ── platform shell: top nav + sections ──
+  const reportHtml = document.getElementById('report-body').innerHTML;
+
+  const shell = `
+  <div class="pf-banner">Beta Review Version — Full PMOS Experience Enabled</div>
+  <nav class="pf-nav">
+    <div class="pf-nav-brand">PMOS™ Recovery OS</div>
+    <div class="pf-nav-tabs">
+      <button class="pf-tab active" data-tab="dash" onclick="pfTab('dash')">Recovery Dashboard</button>
+      <button class="pf-tab" data-tab="journey" onclick="pfTab('journey')">Recovery Journey</button>
+      <button class="pf-tab" data-tab="cockpit" onclick="pfTab('cockpit')">Executive Cockpit</button>
+      <button class="pf-tab" data-tab="assets" onclick="pfTab('assets')">Recovery Assets</button>
+      <button class="pf-tab" data-tab="report" onclick="pfTab('report')">Full Report</button>
+      <button class="pf-tab pf-tab-fb" data-tab="feedback" onclick="pfTab('feedback')">Give Feedback</button>
+    </div>
+  </nav>
+
+  <div class="pf-view" id="pf-dash">${dashHTML(sc,p,cls,readiness,glr)}</div>
+  <div class="pf-view" id="pf-journey" style="display:none">${journeyHTML(sc,theme)}</div>
+  <div class="pf-view" id="pf-cockpit" style="display:none">${cockpitHTML(sc,p)}</div>
+  <div class="pf-view" id="pf-assets" style="display:none">${assetsHTML()}</div>
+  <div class="pf-view" id="pf-report" style="display:none"><div class="report-body-inner">${reportHtml}</div></div>
+  <div class="pf-view" id="pf-feedback" style="display:none">${feedbackHTML()}</div>
+  `;
+  document.getElementById('report-body').innerHTML = shell;
+  document.getElementById('report-body').classList.add('pf-mode');
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function pfTab(t){
+  document.querySelectorAll('.pf-view').forEach(v=>v.style.display='none');
+  document.getElementById('pf-'+t).style.display='block';
+  if(t==='feedback') pfRenderMicroSummary();
+  document.querySelectorAll('.pf-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===t));
+  document.getElementById('s-report').scrollTo({top:0});
+  window.scrollTo({top:0,behavior:'instant'});
+}
+
+function gauge(val,label,col){
+  const pct=Math.max(0,Math.min(100,val));
+  return `<div class="pf-gauge">
+    <svg viewBox="0 0 120 70" class="pf-gauge-svg">
+      <path d="M10,65 A55,55 0 0,1 110,65" fill="none" stroke="#EEE" stroke-width="10" stroke-linecap="round"/>
+      <path d="M10,65 A55,55 0 0,1 110,65" fill="none" stroke="${col}" stroke-width="10" stroke-linecap="round"
+        stroke-dasharray="${Math.PI*55}" stroke-dashoffset="${Math.PI*55*(1-pct/100)}"/>
+    </svg>
+    <div class="pf-gauge-val" style="color:${col}">${val}${label.includes('%')?'':''}</div>
+    <div class="pf-gauge-lbl">${label}</div>
+  </div>`;
+}
+
+function dashHTML(sc,p,cls,readiness,glr){
+  const healthCol = sc.health.overall>=50?'#2E9E5B':sc.health.overall>=25?'#E8A33D':'#E8505B';
+  const pri = sc.primary;
+  const sevCol = pri.band==='CRITICAL'?'#E8505B':pri.band==='ELEVATED'?'#E07B39':'#E8A33D';
+  return `
+  <div class="pf-head">
+    <h1>Recovery Package</h1>
+    <p class="pf-sub">${p} · behavioral diagnosis complete</p>
+  </div>
+  <div class="pf-kpi-row">
+    ${gauge(sc.health.overall,'PMOS Health',healthCol)}
+    ${gauge(readiness,'Recovery Readiness','#6B5B95')}
+    ${gauge(glr,'Go-Live Readiness','#E07B39')}
+  </div>
+  <div class="pf-card-grid">
+    <div class="pf-card"><div class="pf-card-k">Dominant Pattern</div><div class="pf-card-v" style="color:${sevCol}">${pri.name}</div><div class="pf-card-x">${Math.round(pri.score)}/100</div></div>
+    <div class="pf-card"><div class="pf-card-k">Pattern Severity</div><div class="pf-card-v" style="color:${sevCol}">${pri.band}</div></div>
+    <div class="pf-card"><div class="pf-card-k">Recovery Priority</div><div class="pf-card-v">${sc.stable?'Protect & sustain':'Act this week'}</div></div>
+    <div class="pf-card"><div class="pf-card-k">Recovery Risk Level</div><div class="pf-card-v" style="color:${cls.col}">${cls.risk}</div></div>
+    <div class="pf-card pf-card-wide"><div class="pf-card-k">Program Classification</div><div class="pf-card-v" style="color:${cls.col}">${cls.cls}</div></div>
+  </div>
+  <div class="pf-exec">
+    <div class="pf-exec-h">Executive Summary</div>
+    <p>${sc.execSummaryText||document.querySelector('#report-body')&&''}${execSummaryText(sc,p)}</p>
+  </div>
+  <div class="pf-next">
+    <button class="pf-cta" onclick="pfTab('journey')">View your Recovery Journey →</button>
+    <button class="pf-cta pf-cta-ghost" onclick="pfTab('cockpit')">Open Executive Cockpit</button>
+  </div>`;
+}
+
+function execSummaryText(sc,p){
+  if(sc.stable) return `${p} shows no critical behavioral failure pattern. The profile is stable and builder-leaning — focus on protecting decision speed as the program scales.`;
+  const crit=sc.scores4.filter(s=>s.band==='CRITICAL').length;
+  const elev=sc.scores4.filter(s=>s.band==='ELEVATED').length;
+  return `${p} is not failing because of technology, vendor or timeline. The dominant driver is ${sc.primary.name} at ${Math.round(sc.primary.score)}/100. Overall this program shows ${crit} critical and ${elev} elevated patterns requiring sequenced behavioral recovery.`;
+}
+
+function journeyHTML(sc,theme){
+  const phases=[
+    {t:'IMMEDIATE',sub:'first 48 hours',col:'#E8505B'},
+    {t:'NEXT 7 DAYS',sub:'make it visible',col:'#E07B39'},
+    {t:'NEXT 30 DAYS',sub:'stabilise',col:'#E8A33D'},
+    {t:'NEXT 60 DAYS',sub:'prove',col:'#7BB661'},
+    {t:'NEXT 90 DAYS',sub:'embed',col:'#2E9E5B'},
+  ];
+  const acts = journeyActions(sc);
+  const cards = phases.map((ph,i)=>`
+    <div class="pf-phase">
+      <div class="pf-phase-bar" style="background:${ph.col}"></div>
+      <div class="pf-phase-body">
+        <div class="pf-phase-h"><span>${ph.t}</span><em>${ph.sub}</em></div>
+        <ul>${acts[i].map(a=>`<li>${a}</li>`).join('')}</ul>
+      </div>
+    </div>`).join('');
+  return `
+  <div class="pf-head"><h1>${theme.label}</h1><p class="pf-sub">${theme.aim}</p></div>
+  <div class="pf-journey">${cards}</div>`;
+}
+
+function journeyActions(sc){
+  const pri=sc.primary.name;
+  // pattern-specific immediate + early; shared later structure pulled from engine intent
+  const byPattern = {
+    'Hero Dependency\u2122':[
+      ['Name a backup for every single-point-of-failure person — even an imperfect one.','List every decision and system routing through your key individuals.'],
+      ['Start pairing on the highest-risk area (usually integration or config).','Book the sponsor session: protect knowledge-transfer time.'],
+      ['Runbook capture on critical areas; backups execute, heroes observe.','Re-measure: every critical role has two named owners.'],
+      ['Controlled absence test — a hero takes two days offline; log what breaks.','Convert remaining gaps into the transfer backlog.'],
+      ['Make resilience a standing steering measure.','Every critical role has two competent names, checked each steering.'],
+    ],
+    'Nobody Wants To Decide\u2122':[
+      ['Publish a decision log: one named owner + deadline on every open decision.','Identify the single most-blocking decision.'],
+      ['Book a weekly 45-minute sponsor decision slot — decisions only.','Force the top blocking decision to closure as a proof point.'],
+      ['Introduce an aging-escalation rule: overdue decisions auto-escalate.','Clear the decision backlog to single digits.'],
+      ['Lock and sign the go/no-go criteria with a named owner.','Measure decision velocity vs week 1.'],
+      ['Decision ownership becomes the cultural default.','Zero decisions made by deadline-lapse.'],
+    ],
+    'Death By Governance\u2122':[
+      ['Freeze new scope; route every change through one board.','Kill one standing forum that produced no decision last month — publicly.'],
+      ['Cut every approval chain to a maximum of two signatures.','Give each remaining forum a one-line purpose and decision quota.'],
+      ['Shift reporting to one live dashboard; ban status-relay meetings.','Reclaim capacity; redirect to delivery.'],
+      ['Run a governance MOT: every control re-earns its place or is cut.','Measure team capacity reclaimed.'],
+      ['Right-sized governance becomes permanent.','Quarterly governance review embedded.'],
+    ],
+    'Silent Resistance\u2122':[
+      ['Run a shadow-process audit on the highest-risk area.','Sit with the team; watch a real transaction end to end.'],
+      ['Convert two resistant stakeholders with a visible quick win.','Map each group resistant → passive → champion.'],
+      ['Make the old way progressively unavailable where the new one works.','Build the stakeholder recovery plan with named owners.'],
+      ['Measure competence and outcomes, not attendance and logins.','Close the shadow processes that remain.'],
+      ['Adoption is real and self-sustaining.','Outcome metrics replace vanity metrics.'],
+    ],
+    'Builder Culture\u2122':[
+      ['Publicly reinforce one instance of a problem solved, not escalated.','Name the healthy behaviours worth protecting.'],
+      ['Embed a weekly build session — team solves, leader observes.','Push a defined class of decisions down to the team.'],
+      ['Devolve real decision authority for defined issue types.','Reward prevention over heroics.'],
+      ['Protect the culture under go-live pressure.','Guard against reverting to command-and-control.'],
+      ['Builder behaviours are the norm and keep the other patterns fixed.','Continuous capability development embedded.'],
+    ],
+  };
+  return byPattern[pri] || byPattern['Hero Dependency\u2122'];
+}
+
+function cockpitHTML(sc,p){
+  const pri=sc.primary, sec=sc.secondary;
+  const crit=sc.scores4.filter(s=>s.band==='CRITICAL').length;
+  const exposure = (sc.cod && sc.cod.total) ? fmt(sc.cod.total) : '—';
+  return `
+  <div class="pf-head"><h1>Executive Recovery Cockpit</h1><p class="pf-sub">${p} · auto-generated executive outputs</p></div>
+  <div class="pf-ck-grid">
+    <div class="pf-ck-block">
+      <h3>Executive Summary</h3>
+      <p>${execSummaryText(sc,p)}</p>
+    </div>
+    <div class="pf-ck-block">
+      <h3>Steering Committee Brief</h3>
+      <p><strong>What's happening:</strong> ${pri.name} is the dominant behavioral risk at ${Math.round(pri.score)}/100 (${pri.band}), with ${sec.name} compounding it.</p>
+      <p><strong>What we're doing:</strong> a sequenced 7/30/60/90 recovery led by the Recovery Journey, starting with the immediate moves this week.</p>
+      <p><strong>What we need from you:</strong> a weekly decision slot and authority to retire governance that isn't earning its place.</p>
+    </div>
+    <div class="pf-ck-block">
+      <h3>Sponsor Brief</h3>
+      <p>Your program's biggest risk won't show on the RAG report: it's behavioral. ${pri.name} means ${pri.name.indexOf('Hero')>=0?'delivery depends on one or two irreplaceable people':'a structural pattern is quietly driving delay'}. Fifteen minutes of your authority this week unblocks more than any status meeting.</p>
+    </div>
+    <div class="pf-ck-block">
+      <h3>Go-Live Readiness</h3>
+      <p>On current behavior, go-live readiness is constrained by ${pri.name}. ${crit>0?`${crit} critical pattern(s) must move before a credible go/no-go.`:'No critical patterns — protect current momentum through cutover.'}</p>
+    </div>
+    <div class="pf-ck-block pf-ck-wide">
+      <h3>Top Risks &amp; Decisions</h3>
+      <div class="pf-ck-cols">
+        <div><h4>Top risks</h4><ul>
+          <li>${pri.name} — ${Math.round(pri.score)}/100 (${pri.band})</li>
+          <li>${sec.name} — ${Math.round(sec.score)}/100 (${sec.band})</li>
+          <li>Modelled exposure if unaddressed: ${exposure}</li>
+        </ul></div>
+        <div><h4>Top decisions needed</h4><ul>
+          <li>Approve the weekly sponsor decision slot</li>
+          <li>Authorise retirement of low-value governance forums</li>
+          <li>Name backups for every single-point-of-failure role</li>
+        </ul></div>
+      </div>
+    </div>
+    <div class="pf-ck-block pf-ck-wide">
+      <h3>Recovery Narrative</h3>
+      <p>This program can be recovered without a third-party rescue firm if it acts now. The behavioral patterns driving the risk are nameable, sequenced, and addressable in 90 days. The Recovery Journey tab gives the week-by-week plan; the Recovery Assets give the tools to run it. The cost of acting now is a fraction of the modelled exposure of ${exposure}.</p>
+    </div>
+  </div>`;
+}
+
+function feedbackHTML(){
+  return `
+  <div class="pf-head"><h1>Give Feedback</h1><p class="pf-sub">6 minutes · your honest take shapes the launch</p></div>
+  <div class="pf-fb">
+    <p>You've now seen the full PMOS experience: the diagnosis, your recovery package, the executive cockpit, the recovery journey and the integrated assets.</p>
+    <p>One thing left — tell us what you think. Be blunt; critical feedback is the most useful kind.</p>
+    <a class="pf-cta" href="${PMOS_LINKS.feedbackForm}" target="_blank" rel="noopener">Open the feedback form →</a>
+    <div class="pf-fb-micro" id="pf-fb-micro"></div>
+    <p class="pf-fb-note">Most valuable to us: did the diagnosis name a situation you've lived? What would you actually use? Where did you get skeptical?</p>
+  </div>`;
+}
+
+
+/* ════════════════════════════════════════════════════════════════════
+   PMOS BETA — OPTION C ASSET EXPERIENCE
+   In-app asset pages. PDFs embed inline; the Excel workbook gets a framed
+   page with screenshots + an Open Live Workbook action. Micro-feedback on
+   every page. Replaces the flat card grid. Additive — engine untouched.
+
+   ── SINGLE SOURCE OF TRUTH FOR LINKS ──
+   Fill these four values once. Everything else wires automatically.
+   Paths are relative — commit the files next to index.html in the repo,
+   OR replace with absolute https:// URLs (GitHub Pages / Drive preview).
+   ════════════════════════════════════════════════════════════════════ */
+const PMOS_LINKS = {
+  fieldGuidePdf:   'assets/PMOS_Pattern_Field_Guide.pdf',     // ← PDF, embeds inline
+  toolkitPdf:      'assets/PMOS_Recovery_Toolkit.pdf',        // ← PDF, embeds inline
+  sampleReportPdf: 'assets/PMOS_Sample_Diagnostic_Report.pdf',// ← PDF, embeds inline
+  commandCenterXlsx:'assets/PMOS_Recovery_Command_Center.xlsx',// ← xlsx, opens/downloads
+  feedbackForm:    'https://forms.gle/JRRaEdnuGHZu9pUc8',     // ← reviewer feedback (Google Form)
+  // optional screenshots for the Command Center page (commit alongside, else cards show without)
+  ccShot1:         'assets/cc_dashboard.jpg',
+  ccShot2:         'assets/cc_pattern_dashboard.jpg',
+};
+
+// Asset registry — drives the asset hub cards and the individual pages.
+const PMOS_ASSET_PAGES = [
+  {
+    key:'fieldguide', icon:'◫', title:'Pattern Recovery Field Guide', type:'PDF · 28 pages',
+    blurb:'The consultant judgement layer — case studies, the phrases that signal each pattern, recovery sequences and 13 visual frameworks.',
+    kind:'pdf', src:()=>PMOS_LINKS.fieldGuidePdf,
+    overview:'The Field Guide is how a recovery consultant actually thinks. It turns each of the five PMOS patterns into recognition, root cause, sequenced recovery, the exact words to use with executives, and what breaks at go-live if you do nothing.',
+    contents:['Five patterns at full depth — Hero Dependency, Nobody Wants To Decide, Death By Governance, Silent Resistance, Builder Culture',
+              'Real ERP case studies across SAP, Oracle and Dynamics',
+              'The phrases you hear in the room — and what each one signals',
+              'CIO / Sponsor / PM / Team perspectives on every pattern',
+              '13 proprietary visual frameworks (Decision Tree, Adoption Iceberg, Risk Radar, and more)'],
+  },
+  {
+    key:'toolkit', icon:'◰', title:'Recovery Toolkit', type:'PDF · 12 templates',
+    blurb:'Ready-to-use templates from RAID and decision logs to cutover GATE go/no-go logic.',
+    kind:'pdf', src:()=>PMOS_LINKS.toolkitPdf,
+    overview:'Twelve templates a recovery lead reaches for under pressure — practical, fill-in-ready, organised across Project Recovery, Governance, Leadership and Delivery.',
+    contents:['RAID Log and Decision Log templates','Steering Committee pack (30-minute agenda)',
+              'Go-Live Readiness assessment','Cutover checklist with GATE go/no-go logic',
+              'Sponsor contract and escalation templates'],
+  },
+  {
+    key:'sample', icon:'◳', title:'Sample Executive Report', type:'PDF',
+    blurb:'A worked example of a full PMOS diagnostic so you can see the depth of the output.',
+    kind:'pdf', src:()=>PMOS_LINKS.sampleReportPdf,
+    overview:'A complete worked PMOS diagnostic — executive summary, pattern diagnosis, cost-of-delay and recovery roadmap — so you can see exactly what the full output looks like.',
+    contents:['Executive summary written for a sponsor','Primary / secondary / tertiary pattern diagnosis',
+              'Cost-of-delay modelling','7/30/60/90 recovery roadmap','Steering committee talking points'],
+  },
+  {
+    key:'commandcenter', icon:'▦', title:'Recovery Command Center', type:'Excel · 10 tabs · live formulas',
+    blurb:'The live workbook that scores your program, tracks the recovery and projects your health gain.',
+    kind:'xlsx', src:()=>PMOS_LINKS.commandCenterXlsx,
+    overview:'A 10-tab Excel operating system with 583 live formulas. The Pattern Dashboard is its centre — it links every risk, decision, stakeholder and recovery action back to the five patterns, and projects your recovery health in one number. Excel can\u2019t live inside the browser, so here\u2019s a full tour, then open the live workbook when you\u2019re ready.',
+    tabs:['1 · Exec Dashboard — one-page program health','★ Project Atlas — a worked SAP S/4 recovery example',
+          '2 · RAID Register — auto-prioritised by severity','3 · Decision Log — velocity + aging flags',
+          '4 · Recovery Engine — Immediate/30/60/90 with phase RAG','5 · Go-Live Readiness — five weighted streams',
+          '6 · Stakeholder Heatmap','7 · Steering Pack — auto-generated','8 · Financial Exposure',
+          '9 · Pattern Dashboard — the behavioral control tower'],
+    shots:()=>[PMOS_LINKS.ccShot1, PMOS_LINKS.ccShot2],
+  },
+];
+
+let PF_CURRENT_ASSET = null;
+
+function assetsHTML(){
+  const cards = PMOS_ASSET_PAGES.map(a=>`
+    <div class="pf-asset pf-asset-click" onclick="pfOpenAsset('${a.key}')">
+      <div class="pf-asset-ico">${a.icon}</div>
+      <div class="pf-asset-body">
+        <div class="pf-asset-type">${a.type}</div>
+        <div class="pf-asset-title">${a.title}</div>
+        <div class="pf-asset-desc">${a.blurb}</div>
+        <span class="pf-asset-cta">Explore inside PMOS →</span>
+      </div>
+    </div>`).join('');
+  return `
+  <div class="pf-head"><h1>Recovery Assets</h1><p class="pf-sub">Your complete PMOS recovery system — explored inside the platform, not a folder of files</p></div>
+  <div class="pf-asset-grid">${cards}</div>
+  <div id="pf-asset-page"></div>`;
+}
+
+function pfOpenAsset(key){
+  const a = PMOS_ASSET_PAGES.find(x=>x.key===key);
+  if(!a) return;
+  PF_CURRENT_ASSET = key;
+  const host = document.getElementById('pf-asset-page');
+  host.innerHTML = (a.kind==='pdf') ? assetPdfPage(a) : assetXlsxPage(a);
+  host.scrollIntoView({behavior:'smooth', block:'start'});
+}
+
+function pfBackToAssets(){
+  document.getElementById('pf-asset-page').innerHTML='';
+  document.querySelector('#pf-assets .pf-head').scrollIntoView({behavior:'smooth',block:'start'});
+}
+
+function assetPdfPage(a){
+  return `
+  <div class="pf-ap">
+    <button class="pf-ap-back" onclick="pfBackToAssets()">← All assets</button>
+    <div class="pf-ap-head"><span class="pf-ap-ico">${a.icon}</span>
+      <div><div class="pf-ap-type">${a.type}</div><h2>${a.title}</h2></div></div>
+    <p class="pf-ap-over">${a.overview}</p>
+    <div class="pf-ap-cols">
+      <div class="pf-ap-contents">
+        <h4>What's inside</h4>
+        <ul>${a.contents.map(c=>`<li>${c}</li>`).join('')}</ul>
+        <a class="pf-cta pf-ap-open" href="${a.src()}" target="_blank" rel="noopener">Open full PDF in new tab ↗</a>
+      </div>
+      <div class="pf-ap-preview">
+        <h4>Preview — embedded below</h4>
+        <div class="pf-pdf-wrap">
+          <iframe src="${a.src()}#toolbar=1&view=FitH" class="pf-pdf" title="${a.title} preview"></iframe>
+          <div class="pf-pdf-fallback">If the preview doesn't load in your browser, <a href="${a.src()}" target="_blank" rel="noopener">open the PDF directly ↗</a>.</div>
+        </div>
+      </div>
+    </div>
+    ${microFeedback(a.key)}
+  </div>`;
+}
+
+function assetXlsxPage(a){
+  const shots=(a.shots?a.shots():[]).filter(Boolean);
+  const shotHTML = shots.length
+    ? `<div class="pf-ap-shots">${shots.map(s=>`<img src="${s}" alt="Command Center screenshot" onerror="this.style.display='none'"/>`).join('')}</div>`
+    : `<div class="pf-ap-shots-empty">Live workbook — open it to explore all ten tabs.</div>`;
+  return `
+  <div class="pf-ap">
+    <button class="pf-ap-back" onclick="pfBackToAssets()">← All assets</button>
+    <div class="pf-ap-head"><span class="pf-ap-ico">${a.icon}</span>
+      <div><div class="pf-ap-type">${a.type}</div><h2>${a.title}</h2></div></div>
+    <p class="pf-ap-over">${a.overview}</p>
+    ${shotHTML}
+    <div class="pf-ap-cols">
+      <div class="pf-ap-contents">
+        <h4>The ten tabs</h4>
+        <ul>${a.tabs.map(t=>`<li>${t}</li>`).join('')}</ul>
+      </div>
+      <div class="pf-ap-contents">
+        <h4>Why it matters</h4>
+        <ul>
+          <li>Live formulas — type your own program data and every number updates</li>
+          <li>The Pattern Dashboard links risks, decisions and actions back to the five patterns</li>
+          <li>Projects your recovery health gain as a single number to take to your sponsor</li>
+          <li>Ships with the Project Atlas worked example so you see a recovery end to end</li>
+        </ul>
+        <a class="pf-cta pf-ap-open" href="${a.src()}" target="_blank" rel="noopener">Open Live Workbook ↗</a>
+      </div>
+    </div>
+    ${microFeedback(a.key)}
+  </div>`;
+}
+
+function pfRenderMicroSummary(){
+  const host=document.getElementById('pf-fb-micro'); if(!host) return;
+  const m=window.PMOS_MICRO||{};
+  const keys=Object.keys(m);
+  if(!keys.length){ host.innerHTML=''; return; }
+  const label={fieldguide:'Field Guide',toolkit:'Recovery Toolkit',sample:'Sample Report',commandcenter:'Command Center'};
+  const val={valuable:'👍 Valuable',neutral:'😐 Neutral',not_useful:'👎 Not useful'};
+  host.innerHTML='<div class="pf-fb-microbox"><strong>Your quick ratings so far</strong> — please mention these in the form:<ul>'+
+    keys.map(k=>`<li>${label[k]||k}: ${val[m[k]]||m[k]}</li>`).join('')+'</ul></div>';
+}
+
+function microFeedback(key){
+  return `
+  <div class="pf-micro" id="pf-micro-${key}">
+    <span class="pf-micro-q">Was this asset useful?</span>
+    <button class="pf-micro-btn" onclick="pfMicro('${key}','valuable',this)">👍 Valuable</button>
+    <button class="pf-micro-btn" onclick="pfMicro('${key}','neutral',this)">😐 Neutral</button>
+    <button class="pf-micro-btn" onclick="pfMicro('${key}','not_useful',this)">👎 Not useful</button>
+    <span class="pf-micro-thanks" id="pf-micro-thanks-${key}" style="display:none">Thanks — noted.</span>
+  </div>`;
+}
+
+// Micro-feedback store — held in memory, surfaced on the Feedback tab so the
+// reviewer carries it into the feedback form. (No browser storage in artifacts.)
+window.PMOS_MICRO = window.PMOS_MICRO || {};
+function pfMicro(key,val,btn){
+  window.PMOS_MICRO[key]=val;
+  const wrap=btn.parentElement;
+  wrap.querySelectorAll('.pf-micro-btn').forEach(b=>b.classList.remove('sel'));
+  btn.classList.add('sel');
+  document.getElementById('pf-micro-thanks-'+key).style.display='inline';
+}
+
 
 // Initialise currency selector + budget options on load
 renderCurrencyBars();
