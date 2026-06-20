@@ -2021,7 +2021,7 @@ function buildReport(){
     <h3 style="font-size:1.3rem;font-weight:700;color:var(--white);margin-bottom:12px;line-height:1.3">The diagnosis is complete.<br>Now run the recovery.</h3>
     <p style="font-size:.88rem;color:rgba(255,255,255,.65);max-width:440px;margin:0 auto 24px;line-height:1.7">The PMOS\u2122 Recovery Toolkit contains the full step-by-step playbook for every intervention recommended in this report \u2014 including the facilitation guide for a 90-minute team diagnostic session and the Go-Live Readiness checklist for use 6\u20138 weeks before cutover.</p>
     <div style="display:flex;gap:12px;justify-content:center;flex-wrap:wrap">
-      <a href="https://YOUR-GUMROAD-LINK" target="_blank" rel="noopener noreferrer" style="display:inline-block;background:var(--red);color:white;font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:6px;text-decoration:none;letter-spacing:.02em">Get the Recovery Toolkit \u2192</a>
+      <a href="javascript:void(0)" onclick="if(typeof pfTab!=='undefined'){pfTab('assets');}return false;" style="display:inline-block;background:var(--red);color:white;font-weight:700;font-size:.9rem;padding:14px 28px;border-radius:6px;text-decoration:none;letter-spacing:.02em;cursor:pointer">Open the Recovery Toolkit \u2192</a>
       <button onclick="window.print()" style="background:rgba(255,255,255,.1);color:white;font-weight:600;font-size:.9rem;padding:14px 28px;border-radius:6px;letter-spacing:.02em;cursor:pointer;border:none">Save this report as PDF</button>
     </div>
     <p style="margin-top:20px;font-size:.72rem;color:rgba(255,255,255,.3)">PMOS\u2122 \u00b7 Project Management Operating System \u00b7 Behavioral Diagnosis for ERP &amp; Transformation Programs</p>
@@ -2045,17 +2045,22 @@ function renderBudgetOptions(){
   const sel = document.getElementById('f-budget');
   if(!sel) return;
   const prev = sel.value;
-  // m(usdMillions) → uses the same localized big-number engine as the report,
-  // so INR shows Lakh/Crore and western shows Million/Billion consistently.
-  function m(usdM){ return fmt(usdM * 1000000); }
-  const ranges = [
-    ['2',  'Under '+m(5)],
-    ['7',  m(5)+' – '+m(10)],
-    ['15', m(10)+' – '+m(20)],
-    ['35', m(20)+' – '+m(50)],
-    ['75', m(50)+' – '+m(100)],
-    ['150','Over '+m(100)]
-  ];
+  const code = (typeof state!=='undefined' && state.currency) ? state.currency : 'USD';
+  // Currency-native bands. value = representative USD-millions (engine reads state.budgetM
+  // in USD millions, so the scoring engine is unchanged). label = locally familiar wording.
+  const BANDS = {
+    USD: [['0.07','Under $100K'],['0.3','$100K – $500K'],['0.75','$500K – $1M'],
+          ['3','$1M – $5M'],['7.5','$5M – $10M'],['15','$10M – $25M'],['40','$25M – $50M'],['75','$50M+']],
+    GBP: [['0.06','Under £100K'],['0.25','£100K – £500K'],['0.65','£500K – £1M'],
+          ['2.5','£1M – £5M'],['6.5','£5M – £10M'],['13','£10M – £25M'],['33','£25M – £50M'],['65','£50M+']],
+    EUR: [['0.07','Under €100K'],['0.3','€100K – €500K'],['0.75','€500K – €1M'],
+          ['3','€1M – €5M'],['7.5','€5M – €10M'],['15','€10M – €25M'],['40','€25M – €50M'],['75','€50M+']],
+    AED: [['0.25','Under AED 1M'],['1','AED 1M – 5M'],['2.5','AED 5M – 10M'],
+          ['7','AED 10M – 25M'],['14','AED 25M – 50M'],['28','AED 50M – 100M'],['55','AED 100M – 200M'],['110','AED 200M+']],
+    INR: [['0.12','Under ₹10 Lakh'],['0.36','₹10 – 50 Lakh'],['0.9','₹50 Lakh – 1 Crore'],
+          ['3.6','₹1 – 5 Crore'],['9','₹5 – 10 Crore'],['21','₹10 – 25 Crore'],['45','₹25 – 50 Crore'],['90','₹50 Crore+']]
+  };
+  const ranges = BANDS[code] || BANDS.USD;
   sel.innerHTML = '<option value="">Select range</option>' +
     ranges.map(([v,l])=>`<option value="${v}">${l}</option>`).join('');
   if(prev) sel.value = prev;
@@ -2073,7 +2078,7 @@ function onIntakeCurrencyChange(){
 }
 
 function unlockReport(){
-  // In production: redirect to Stripe/Gumroad checkout
+  // In production: redirect to checkout (reviewer mode bypasses this entirely)
   // For demo: simulate instant unlock
   state.isPaid = true;
   buildReport();
@@ -2168,7 +2173,12 @@ function buildPlatform(){
   `;
   document.getElementById('report-body').innerHTML = shell;
   document.getElementById('report-body').classList.add('pf-mode');
-  window.scrollTo({top:0,behavior:'instant'});
+  // Issue 3: land the reviewer on the Recovery Dashboard, not the old report header.
+  setTimeout(()=>{
+    const nav = document.querySelector('.pf-nav');
+    if(nav) nav.scrollIntoView({behavior:'smooth', block:'start'});
+    else window.scrollTo({top:0,behavior:'instant'});
+  }, 80);
 }
 
 function pfTab(t){
