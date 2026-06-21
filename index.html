@@ -69,7 +69,7 @@ input,select{font-family:var(--f-ui)}
    SCREEN 0 — LANDING
 ══════════════════════════════════════════════════════════ */
 #s-landing{
-  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  display:none;flex-direction:column;align-items:center;justify-content:center;
   min-height:100vh;padding:48px 24px;background:var(--navy);
 }
 #s-landing.active{display:flex}
@@ -506,7 +506,7 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
 @media(max-width:800px){
   #s-assess.active{grid-template-columns:1fr;grid-template-rows:auto 280px}
   .assess-right{height:280px;position:static;padding:24px}
-  .assess-left{padding:28px 20px}
+  .assess-left{padding:28px 20px;justify-content:flex-start}
   .health-grid{grid-template-columns:repeat(3,1fr)}
   .report-topbar{padding:12px 16px}
   .report-body{padding:28px 16px 60px}
@@ -663,6 +663,55 @@ button:focus-visible,a:focus-visible{outline:2px solid var(--red);outline-offset
   .pf-pdf{height:420px;}
 }
 
+
+/* ═══ Part 1.3 Prev/Next nav ═══ */
+.pf-prevnext{display:flex;justify-content:space-between;gap:12px;margin-top:32px;padding-top:20px;border-top:1px solid #ECECF2;}
+.pf-pn{background:#fff;border:1.5px solid #D5D5DD;border-radius:9px;padding:12px 20px;font-size:13.5px;font-weight:700;cursor:pointer;font-family:inherit;color:#1A1A2E;transition:.14s;}
+.pf-pn:hover{border-color:#6B5B95;color:#6B5B95;}
+.pf-pn-next{background:#6B5B95;color:#fff;border-color:#6B5B95;margin-left:auto;}
+.pf-pn-next:hover{background:#5a4d80;color:#fff;}
+/* ═══ Part 2.5 Top 3 actions ═══ */
+.pf-top3{background:#FFF8F0;border:1px solid #F0D9BE;border-radius:12px;padding:18px 22px;margin-bottom:22px;}
+.pf-top3-h{font-size:13px;font-weight:800;text-transform:uppercase;letter-spacing:.5px;color:#E07B39;margin-bottom:10px;}
+.pf-top3-list{margin:0 0 12px;padding-left:22px;}
+.pf-top3-list li{font-size:14px;color:#1A1A2E;line-height:1.55;margin-bottom:7px;font-weight:500;}
+.pf-top3-more{background:none;border:none;color:#6B5B95;font-weight:700;font-size:13px;cursor:pointer;padding:0;font-family:inherit;}
+/* ═══ Part 3 Command Center guide ═══ */
+.pf-cc-guide{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px;margin:0 0 20px;}
+.pf-cc-guide-item{background:#F2EFF7;border-radius:10px;padding:14px 16px;display:flex;flex-direction:column;gap:5px;}
+.pf-cc-guide-k{font-size:11px;text-transform:uppercase;letter-spacing:.5px;color:#6B5B95;font-weight:800;}
+.pf-cc-guide-v{font-size:13px;color:#333;line-height:1.5;}
+@media(max-width:780px){
+  .pf-cc-guide{grid-template-columns:1fr;}
+  .pf-prevnext{flex-direction:column;}
+  .pf-pn-next{margin-left:0;}
+}
+
+
+/* ═══ Part 2 Collapsible report sections ═══ */
+.rs-collapsible{border:1px solid #ECECF2;border-radius:10px;margin-bottom:12px;background:#fff;overflow:hidden;}
+.rs-collapsible>.rs-summary{cursor:pointer;padding:16px 20px;list-style:none;display:flex;flex-direction:column;gap:3px;position:relative;user-select:none;}
+.rs-collapsible>.rs-summary::-webkit-details-marker{display:none;}
+.rs-collapsible>.rs-summary::after{content:'▼';position:absolute;right:20px;top:18px;font-size:11px;color:#8A8A9A;transition:transform .2s;}
+.rs-collapsible[open]>.rs-summary::after{transform:rotate(180deg);}
+.rs-collapsible>.rs-summary:hover{background:#FAFAFC;}
+.rs-collapsible .rs-content{padding:0 20px 20px;}
+.rs-collapsible .rs-eyebrow{font-size:.66rem;font-weight:700;letter-spacing:.16em;color:#E8505B;text-transform:uppercase;}
+.rs-collapsible .rs-title{font-size:1.05rem;font-weight:700;color:#1A1A2E;line-height:1.3;}
+/* ═══ Part 4 Orientation banner ═══ */
+.pf-orient{background:#1A1A2E;border-radius:12px;padding:16px 20px;margin-bottom:22px;}
+.pf-orient-meta{color:#fff;font-size:13px;margin-bottom:10px;}
+.pf-orient-meta strong{color:#fff;}.pf-orient-meta em{color:#E8A33D;font-style:normal;font-weight:700;}
+.pf-orient-steps{display:flex;align-items:center;gap:7px;flex-wrap:wrap;}
+.pf-orient-step{font-size:11.5px;color:#9A9AAE;font-weight:600;padding:3px 9px;border-radius:14px;background:rgba(255,255,255,.06);}
+.pf-orient-now{color:#fff;background:#E8505B;}
+.pf-orient-arr{color:#55556A;font-size:11px;}
+@media(max-width:780px){.pf-orient-steps{gap:5px;}.pf-orient-step{font-size:10.5px;padding:2px 7px;}}
+
+.rpd-intro{background:#F7F7FB;border-left:4px solid #6B5B95;border-radius:8px;padding:20px 24px;margin-bottom:20px;}
+.rpd-intro-eyebrow{font-size:.66rem;font-weight:800;letter-spacing:.16em;color:#6B5B95;text-transform:uppercase;margin-bottom:6px;}
+.rpd-intro-title{font-size:1.2rem;font-weight:800;color:#1A1A2E;margin:0 0 8px;}
+.rpd-intro-sub{font-size:.92rem;color:#555;line-height:1.6;margin:0;}
 </style>
 
 <!-- Inline favicon — no external file needed -->
@@ -1029,6 +1078,11 @@ function goToIntake(){
 function showScreen(id){
   document.querySelectorAll('.screen').forEach(s => s.classList.remove('active'));
   document.getElementById(id).classList.add('active');
+  // Reset scroll on every screen change so content starts at the top (was carrying over
+  // the previous screen's scroll position, pushing question headings off-screen on mobile).
+  document.documentElement.scrollTop = 0;
+  document.body.scrollTop = 0;
+  if(window.scrollTo) window.scrollTo(0,0);
 }
 
 /* ════════════════════════════════════════════════════════════
@@ -1266,6 +1320,19 @@ function renderQuestion(qi){
   btnBack.style.display = qi===0 ? 'none' : 'inline-block';
   btnNext.textContent = qi===6 ? 'Generate my report →' : 'Next question →';
   setNextEnabled(state.answers[qi]!==null);
+
+  // Issue 1: after rendering a question, force the page to the top so the question heading
+  // is visible before the options. Bypass smooth-scroll (which fought the reset on mobile)
+  // by setting scrollTop directly, immediately and after layout settles.
+  const _scrollQTop = ()=>{
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    if(window.scrollTo) window.scrollTo(0,0);
+  };
+  _scrollQTop();
+  requestAnimationFrame(_scrollQTop);
+  setTimeout(_scrollQTop, 50);
+  setTimeout(_scrollQTop, 150);
 }
 
 function selectAnswer(qi, val, el){
@@ -1508,7 +1575,20 @@ function buildReport(){
     {action:'Cancel one meeting.',detail:`Pick the recurring meeting that has not produced a decision in the last 30 days. Cancel it before end of day Monday. This is not efficiency \u2014 it is a signal.`}
   ];
 
+  let _secIdx = 0;
   function section(eyebrow,title,content){
+    _secIdx++;
+    // Reviewer mode: render collapsible (summary-first). First two sections open by default.
+    if(typeof REVIEWER_MODE!=='undefined' && REVIEWER_MODE){
+      const open = _secIdx<=2 ? ' open' : '';
+      return `<details class="rs rs-collapsible"${open}>
+        <summary class="rs-summary">
+          ${eyebrow?`<span class="rs-eyebrow">${eyebrow}</span>`:''}
+          <span class="rs-title">${title}</span>
+        </summary>
+        <div class="rs-content">${content}</div>
+      </details>`;
+    }
     return `<div class="rs">
       ${eyebrow?`<div class="rs-eyebrow">${eyebrow}</div>`:''}
       <div class="rs-title">${title}</div>
@@ -1810,6 +1890,14 @@ function buildReport(){
 
   const html = `
 
+  ${(typeof REVIEWER_MODE!=='undefined' && REVIEWER_MODE) ? `
+  <div class="rpd-intro">
+    <div class="rpd-intro-eyebrow">FULL REPORT \u00b7 SUPPORTING DETAIL</div>
+    <h2 class="rpd-intro-title">The evidence behind your diagnosis</h2>
+    <p class="rpd-intro-sub">Your headline diagnosis is on the Recovery Dashboard. This section is the supporting depth \u2014 pattern analysis, risk forecast, financial exposure and recovery detail. Expand any section below.</p>
+  </div>
+  ` : `
+
   <div class="beta-ribbon">
     <span class="beta-dot"></span>
     <div>
@@ -1847,6 +1935,7 @@ function buildReport(){
     <button class="pnav-btn" onclick="scrollToSection('assets-anchor')">\u25B8 Integrated Assets</button>
     <button class="pnav-btn" onclick="scrollToSection('feedback-anchor')">\u25B8 Give Feedback</button>
   </div>
+  `}
 
   ${section('Prepared for: '+role, 'What This Means For You',
     `<div class="for-you-box"><p>This report contains findings that will be uncomfortable to read. That is intentional.
@@ -2164,15 +2253,19 @@ function buildPlatform(){
     </div>
   </nav>
 
-  <div class="pf-view" id="pf-dash">${dashHTML(sc,p,cls,readiness,glr)}</div>
-  <div class="pf-view" id="pf-journey" style="display:none">${journeyHTML(sc,theme)}</div>
-  <div class="pf-view" id="pf-cockpit" style="display:none">${cockpitHTML(sc,p)}</div>
-  <div class="pf-view" id="pf-assets" style="display:none">${assetsHTML()}</div>
-  <div class="pf-view" id="pf-report" style="display:none"><div class="report-body-inner">${reportHtml}</div></div>
-  <div class="pf-view" id="pf-feedback" style="display:none">${feedbackHTML()}</div>
+  <div class="pf-view" id="pf-dash">${dashHTML(sc,p,cls,readiness,glr)}${pfPrevNext('dash')}</div>
+  <div class="pf-view" id="pf-journey" style="display:none">${journeyHTML(sc,theme)}${pfPrevNext('journey')}</div>
+  <div class="pf-view" id="pf-cockpit" style="display:none">${cockpitHTML(sc,p)}${pfPrevNext('cockpit')}</div>
+  <div class="pf-view" id="pf-assets" style="display:none">${assetsHTML()}${pfPrevNext('assets')}</div>
+  <div class="pf-view" id="pf-report" style="display:none"><div class="report-body-inner">${reportHtml}</div>${pfPrevNext('report')}</div>
+  <div class="pf-view" id="pf-feedback" style="display:none">${feedbackHTML()}${pfPrevNext('feedback')}</div>
   `;
   document.getElementById('report-body').innerHTML = shell;
   document.getElementById('report-body').classList.add('pf-mode');
+  // Part 3: hide the legacy report topbar (logo + Print button) in reviewer mode —
+  // the SaaS platform nav is the primary experience.
+  const topbar = document.querySelector('#s-report .report-topbar');
+  if(topbar) topbar.style.display = 'none';
   // Issue 3: land the reviewer on the Recovery Dashboard, not the old report header.
   setTimeout(()=>{
     const nav = document.querySelector('.pf-nav');
@@ -2181,13 +2274,52 @@ function buildPlatform(){
   }, 80);
 }
 
+const PF_TAB_ORDER = ['dash','journey','cockpit','assets','report','feedback'];
+const PF_TAB_LABEL = {dash:'Recovery Dashboard',journey:'Recovery Journey',cockpit:'Executive Cockpit',assets:'Recovery Assets',report:'Full Report',feedback:'Give Feedback'};
+
 function pfTab(t){
   document.querySelectorAll('.pf-view').forEach(v=>v.style.display='none');
   document.getElementById('pf-'+t).style.display='block';
   if(t==='feedback') pfRenderMicroSummary();
   document.querySelectorAll('.pf-tab').forEach(b=>b.classList.toggle('active', b.dataset.tab===t));
-  document.getElementById('s-report').scrollTo({top:0});
-  window.scrollTo({top:0,behavior:'instant'});
+  pfScrollToReportTop();
+}
+
+// Scroll so the platform banner+nav sit at the top of the viewport and the active view's
+// content sits directly beneath the sticky nav. ROOT-CAUSE FIX: the nav is position:sticky,
+// so reading nav.getBoundingClientRect().top returns ~0 once scrolled and the old code
+// effectively scrolled to the *current* position (retaining it). Instead we target the
+// stable, non-sticky #report-body container's absolute document offset.
+function pfScrollToReportTop(){
+  const doScroll = ()=>{
+    const rb = document.getElementById('report-body');
+    const banner = document.querySelector('.pf-banner');
+    if(!rb) { window.scrollTo(0,0); return; }
+    // Scroll-INDEPENDENT document offset of report-body (walk offsetParents), plus the
+    // banner height so the sticky nav pins at the very top of the viewport with the
+    // active view's content directly beneath it. Using offsetTop (not getBoundingClientRect)
+    // avoids the drift that retained the previous scroll position.
+    let y = 0, el = rb;
+    while(el){ y += el.offsetTop; el = el.offsetParent; }
+    if(banner) y += banner.getBoundingClientRect().height;
+    document.documentElement.scrollTop = y;
+    document.body.scrollTop = y;
+    if(window.scrollTo) window.scrollTo(0, y);
+  };
+  doScroll();
+  requestAnimationFrame(()=>{ requestAnimationFrame(doScroll); });
+  setTimeout(doScroll, 60);
+}
+
+// Previous / Next section navigation (Part 1.3) — rendered at the foot of every view.
+function pfPrevNext(t){
+  const i = PF_TAB_ORDER.indexOf(t);
+  const prev = i>0 ? PF_TAB_ORDER[i-1] : null;
+  const next = i<PF_TAB_ORDER.length-1 ? PF_TAB_ORDER[i+1] : null;
+  return `<div class="pf-prevnext">
+    ${prev?`<button class="pf-pn pf-pn-prev" onclick="pfTab('${prev}')">← ${PF_TAB_LABEL[prev]}</button>`:'<span></span>'}
+    ${next?`<button class="pf-pn pf-pn-next" onclick="pfTab('${next}')">Next: ${PF_TAB_LABEL[next]} →</button>`:'<span></span>'}
+  </div>`;
 }
 
 function gauge(val,label,col){
@@ -2212,6 +2344,17 @@ function dashHTML(sc,p,cls,readiness,glr){
     <h1>Recovery Package</h1>
     <p class="pf-sub">${p} · behavioral diagnosis complete</p>
   </div>
+  <div class="pf-orient">
+    <div class="pf-orient-meta"><strong>PMOS Recovery Review</strong> · 6 sections · about 5 minutes · use <em>Next</em> to move through</div>
+    <div class="pf-orient-steps">
+      <span class="pf-orient-step pf-orient-now">Dashboard</span><span class="pf-orient-arr">→</span>
+      <span class="pf-orient-step">Journey</span><span class="pf-orient-arr">→</span>
+      <span class="pf-orient-step">Cockpit</span><span class="pf-orient-arr">→</span>
+      <span class="pf-orient-step">Assets</span><span class="pf-orient-arr">→</span>
+      <span class="pf-orient-step">Full Report</span><span class="pf-orient-arr">→</span>
+      <span class="pf-orient-step">Feedback</span>
+    </div>
+  </div>
   <div class="pf-kpi-row">
     ${gauge(sc.health.overall,'PMOS Health',healthCol)}
     ${gauge(readiness,'Recovery Readiness','#6B5B95')}
@@ -2226,12 +2369,24 @@ function dashHTML(sc,p,cls,readiness,glr){
   </div>
   <div class="pf-exec">
     <div class="pf-exec-h">Executive Summary</div>
-    <p>${sc.execSummaryText||document.querySelector('#report-body')&&''}${execSummaryText(sc,p)}</p>
+    <p>${execSummaryText(sc,p)}</p>
+  </div>
+  <div class="pf-top3">
+    <div class="pf-top3-h">Top 3 actions — start here</div>
+    <ol class="pf-top3-list">${pfTop3Actions(sc).map(a=>`<li>${a}</li>`).join('')}</ol>
+    <button class="pf-top3-more" onclick="pfTab('journey')">See the full recovery journey →</button>
   </div>
   <div class="pf-next">
     <button class="pf-cta" onclick="pfTab('journey')">View your Recovery Journey →</button>
     <button class="pf-cta pf-cta-ghost" onclick="pfTab('cockpit')">Open Executive Cockpit</button>
   </div>`;
+}
+
+function pfTop3Actions(sc){
+  // Pull the immediate + first 7-day actions from the pattern-specific journey engine.
+  const acts = journeyActions(sc);          // [[immediate...],[7day...],...]
+  const flat = [...(acts[0]||[]), ...(acts[1]||[])];
+  return flat.slice(0,3);
 }
 
 function execSummaryText(sc,p){
@@ -2311,12 +2466,8 @@ function cockpitHTML(sc,p){
   const crit=sc.scores4.filter(s=>s.band==='CRITICAL').length;
   const exposure = (sc.cod && sc.cod.total) ? fmt(sc.cod.total) : '—';
   return `
-  <div class="pf-head"><h1>Executive Recovery Cockpit</h1><p class="pf-sub">${p} · auto-generated executive outputs</p></div>
+  <div class="pf-head"><h1>Executive Recovery Cockpit</h1><p class="pf-sub">${p} · what leadership needs to know and do</p></div>
   <div class="pf-ck-grid">
-    <div class="pf-ck-block">
-      <h3>Executive Summary</h3>
-      <p>${execSummaryText(sc,p)}</p>
-    </div>
     <div class="pf-ck-block">
       <h3>Steering Committee Brief</h3>
       <p><strong>What's happening:</strong> ${pri.name} is the dominant behavioral risk at ${Math.round(pri.score)}/100 (${pri.band}), with ${sec.name} compounding it.</p>
@@ -2501,6 +2652,11 @@ function assetXlsxPage(a){
     <div class="pf-ap-head"><span class="pf-ap-ico">${a.icon}</span>
       <div><div class="pf-ap-type">${a.type}</div><h2>${a.title}</h2></div></div>
     <p class="pf-ap-over">${a.overview}</p>
+    <div class="pf-cc-guide">
+      <div class="pf-cc-guide-item"><span class="pf-cc-guide-k">Who uses it</span><span class="pf-cc-guide-v">The recovery lead and PMO — owned by one person, reviewed at steering.</span></div>
+      <div class="pf-cc-guide-item"><span class="pf-cc-guide-k">Start on this tab</span><span class="pf-cc-guide-v">★ Project Atlas — the worked example — then 9 · Pattern Dashboard.</span></div>
+      <div class="pf-cc-guide-item"><span class="pf-cc-guide-k">Expected outcome</span><span class="pf-cc-guide-v">One health number, a prioritised action list, and a recovery you can show your sponsor.</span></div>
+    </div>
     ${shotHTML}
     <div class="pf-ap-cols">
       <div class="pf-ap-contents">
